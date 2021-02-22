@@ -1,0 +1,437 @@
+2021-01-15 14:03:53,146 INFO DBoperationsDBO.customerDAO [http-listener-1(1)] com.mysql.jdbc.JDBC4PreparedStatement@6b33ad5e: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='RF' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:03:56,810 INFO Data_Retrive_Servlets.pdc_DAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@54880018: SELECT 
+ncpm_cust_prod_map_seller.idndb_cust_prod_map,
+ncd_cust_define_seller.cust_id,
+ncd_cust_define_seller.cust_name,
+ngmmf_geo_market.geo_market_desc,
+nbmf_branch_master.branch_name
+FROM 
+ndb_cust_prod_map ncpm_cust_prod_map_seller inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define = ncd_cust_define_seller.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+ncpm_cust_prod_map_seller.idndb_cust_prod_map ='2309'
+2021-01-15 14:04:02,894 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@36edb4e5: SELECT 
+nptm_txn_master.idndb_pdc_txn_master,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_batch_no,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on 
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define 
+where
+nptm_txn_master.pdc_chq_status in ('ACTIVE','ERLYLIQUDED') and 
+nptm_txn_master.pdc_req_financing='RF' and 
+nptm_txn_master.pdc_chq_status_auth in ('UN-AUTHORIZED') and 
+nptm_txn_master.pdc_chq_batch_no ='*' and 
+nptm_txn_master.idndb_customer_define_seller_id='2309'
+2021-01-15 14:04:08,965 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@390cb9c7: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392014'
+2021-01-15 14:04:15,931 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@ab56d7a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392015'
+2021-01-15 14:04:18,153 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@56ab3f6a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392016'
+2021-01-15 14:04:20,142 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@6557b732: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392017'
+2021-01-15 14:04:21,770 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@110e0fb6: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392018'
+2021-01-15 14:04:22,848 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@30f17e50: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392019'
+2021-01-15 14:04:25,377 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@3fae574b: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392020'
+2021-01-15 14:04:30,101 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@679889ab: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392021'
+2021-01-15 14:04:31,781 INFO DBoperationsDBO.customerDAO [http-listener-1(3)] com.mysql.jdbc.JDBC4PreparedStatement@365e1c8: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='RF' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:04:35,828 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@60a4951: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392022'
+2021-01-15 14:04:44,654 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@3d32a43e: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392023'
+2021-01-15 14:04:52,125 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@70eba8dc: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392024'
+2021-01-15 14:04:56,151 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@7093958: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392025'
+2021-01-15 14:05:00,550 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@2f327ed3: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392026'
+2021-01-15 14:05:02,904 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@2b29ea1: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392027'
+2021-01-15 14:05:06,067 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@3c046c36: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392028'
+2021-01-15 14:05:09,672 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@72895117: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392029'
+2021-01-15 14:05:14,215 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@4ef17d73: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392030'
+2021-01-15 14:05:18,259 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@5820b59a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392031'
+2021-01-15 14:05:18,658 INFO DBoperationsDBO.customerDAO [http-listener-1(1)] com.mysql.jdbc.JDBC4PreparedStatement@5bb1e52f: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:05:19,509 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@475a0774: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392032'
+2021-01-15 14:05:20,469 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@7f63e761: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392033'
+2021-01-15 14:05:21,586 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@3a3c171b: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392034'
+2021-01-15 14:05:22,462 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@67edf9a3: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392035'
+2021-01-15 14:05:23,364 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@701b338d: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392036'
+2021-01-15 14:05:24,457 INFO Reports.ReportDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@10239a00: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392037'
+2021-01-15 14:05:24,458 INFO Report_servelets.report_data_extract [http-listener-1(5)] get_pdc_rf_rurned_anal_bw out.flush called...
+2021-01-15 14:05:26,631 INFO Data_Retrive_Servlets.pdc_DAO [http-listener-1(3)] com.mysql.jdbc.JDBC4PreparedStatement@29d486ca: SELECT 
+ncpm_cust_prod_map_seller.idndb_cust_prod_map,
+ncd_cust_define_seller.cust_id,
+ncd_cust_define_seller.cust_name,
+ngmmf_geo_market.geo_market_desc,
+nbmf_branch_master.branch_name
+FROM 
+ndb_cust_prod_map ncpm_cust_prod_map_seller inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define = ncd_cust_define_seller.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+ncpm_cust_prod_map_seller.idndb_cust_prod_map ='2888'
+2021-01-15 14:05:27,466 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3d18bf3c: SELECT 
+nptm_txn_master.idndb_pdc_txn_master,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_batch_no,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on 
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define 
+where
+nptm_txn_master.pdc_chq_status in ('ACTIVE','ERLYLIQUDED') and 
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth in ('UN-AUTHORIZED') and 
+nptm_txn_master.pdc_chq_batch_no ='*' and 
+nptm_txn_master.idndb_customer_define_seller_id='2888'
+2021-01-15 14:05:28,554 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@64004ab: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391374'
+2021-01-15 14:05:29,415 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@57c00011: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391375'
+2021-01-15 14:05:29,415 INFO Report_servelets.report_data_extract [http-listener-1(4)] get_pdc_rf_rurned_anal_bw out.flush called...
+2021-01-15 14:05:41,135 INFO DBoperationsDBO.customerDAO [http-listener-1(3)] com.mysql.jdbc.JDBC4PreparedStatement@69423059: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:05:52,011 INFO Data_Retrive_Servlets.pdc_DAO [http-listener-1(1)] com.mysql.jdbc.JDBC4PreparedStatement@188188f2: SELECT 
+ncpm_cust_prod_map_seller.idndb_cust_prod_map,
+ncd_cust_define_seller.cust_id,
+ncd_cust_define_seller.cust_name,
+ngmmf_geo_market.geo_market_desc,
+nbmf_branch_master.branch_name
+FROM 
+ndb_cust_prod_map ncpm_cust_prod_map_seller inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define = ncd_cust_define_seller.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+ncpm_cust_prod_map_seller.idndb_cust_prod_map ='1884'
+2021-01-15 14:05:53,193 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@1262fd14: SELECT 
+nptm_txn_master.idndb_pdc_txn_master,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_batch_no,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on 
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define 
+where
+nptm_txn_master.pdc_chq_status in ('ACTIVE','ERLYLIQUDED') and 
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth in ('UN-AUTHORIZED') and 
+nptm_txn_master.pdc_chq_batch_no ='*' and 
+nptm_txn_master.idndb_customer_define_seller_id='1884'
+2021-01-15 14:05:54,018 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6eb9c85b: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392044'
+2021-01-15 14:05:54,019 INFO Report_servelets.report_data_extract [http-listener-1(4)] get_pdc_rf_rurned_anal_bw out.flush called...
+2021-01-15 14:06:02,389 INFO DBoperationsDBO.customerDAO [http-listener-1(1)] com.mysql.jdbc.JDBC4PreparedStatement@7a6e4b0c: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:06:04,696 INFO Data_Retrive_Servlets.pdc_DAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@1d49c571: SELECT 
+ncpm_cust_prod_map_seller.idndb_cust_prod_map,
+ncd_cust_define_seller.cust_id,
+ncd_cust_define_seller.cust_name,
+ngmmf_geo_market.geo_market_desc,
+nbmf_branch_master.branch_name
+FROM 
+ndb_cust_prod_map ncpm_cust_prod_map_seller inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define = ncd_cust_define_seller.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+ncpm_cust_prod_map_seller.idndb_cust_prod_map ='2445'
+2021-01-15 14:06:05,664 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@5b5caf1c: SELECT 
+nptm_txn_master.idndb_pdc_txn_master,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_batch_no,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on 
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define 
+where
+nptm_txn_master.pdc_chq_status in ('ACTIVE','ERLYLIQUDED') and 
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth in ('UN-AUTHORIZED') and 
+nptm_txn_master.pdc_chq_batch_no ='*' and 
+nptm_txn_master.idndb_customer_define_seller_id='2445'
+2021-01-15 14:06:06,537 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@5b898b55: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392038'
+2021-01-15 14:06:07,394 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6919a427: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392039'
+2021-01-15 14:06:08,335 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4a52c705: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392040'
+2021-01-15 14:06:10,594 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@7448a51c: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392041'
+2021-01-15 14:06:12,022 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@630c5be3: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392042'
+2021-01-15 14:06:12,953 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4790e339: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='392043'
+2021-01-15 14:06:12,953 INFO Report_servelets.report_data_extract [http-listener-1(4)] get_pdc_rf_rurned_anal_bw out.flush called...
+2021-01-15 14:06:29,060 INFO DBoperationsDBO.customerDAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@66b58058: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED'  and nptm_txn_master.pdc_chq_batch_no ='*' or (nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification not in ('NEW') )  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:08:00,391 INFO DBoperationsDBO.customerDAO [http-listener-1(1)] com.mysql.jdbc.JDBC4PreparedStatement@de1abf9: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED' and nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification ='NEW'  group by nptm_txn_master.idndb_customer_define_seller_id
+2021-01-15 14:08:04,721 INFO Data_Retrive_Servlets.pdc_DAO [http-listener-1(5)] com.mysql.jdbc.JDBC4PreparedStatement@755939e2: SELECT 
+ncpm_cust_prod_map_seller.idndb_cust_prod_map,
+ncd_cust_define_seller.cust_id,
+ncd_cust_define_seller.cust_name,
+ngmmf_geo_market.geo_market_desc,
+nbmf_branch_master.branch_name
+FROM 
+ndb_cust_prod_map ncpm_cust_prod_map_seller inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define = ncd_cust_define_seller.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+ncpm_cust_prod_map_seller.idndb_cust_prod_map ='1850'
+2021-01-15 14:08:06,846 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4f01ab9a: SELECT 
+nptm_txn_master.idndb_pdc_txn_master,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_batch_no,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on 
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define 
+where
+nptm_txn_master.pdc_chq_status in ('ACTIVE','ERLYLIQUDED') and 
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth in ('UN-AUTHORIZED') and 
+nptm_txn_master.pdc_chq_batch_no not in ('*') and 
+nptm_txn_master.idndb_customer_define_seller_id='1850'
+2021-01-15 14:08:08,080 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@581427e7: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391798'
+2021-01-15 14:08:10,492 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@556397a3: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391800'
+2021-01-15 14:08:12,637 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@23dc1ac1: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391801'
+2021-01-15 14:08:13,632 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6143385b: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391804'
+2021-01-15 14:08:14,608 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@1811108b: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391805'
+2021-01-15 14:08:16,163 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@510652a5: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391807'
+2021-01-15 14:08:18,905 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@12cf4056: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391810'
+2021-01-15 14:08:20,683 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6ab633b4: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391812'
+2021-01-15 14:08:22,132 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@7a33e321: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391814'
+2021-01-15 14:08:24,123 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@19c305b8: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391816'
+2021-01-15 14:08:25,033 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@71e63b26: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391818'
+2021-01-15 14:08:26,125 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@2a169d3d: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391820'
+2021-01-15 14:08:27,092 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4fd959b5: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391822'
+2021-01-15 14:08:28,121 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4e366b33: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391823'
+2021-01-15 14:08:29,082 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@ec946d8: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391826'
+2021-01-15 14:08:29,951 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@10a8cd49: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391828'
+2021-01-15 14:08:30,993 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@15b93a18: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391830'
+2021-01-15 14:08:32,165 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@68abb46f: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391832'
+2021-01-15 14:08:34,233 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@2c10d024: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391833'
+2021-01-15 14:08:37,147 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@7a04826a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391836'
+2021-01-15 14:08:38,061 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@26311ec8: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391837'
+2021-01-15 14:08:39,092 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@138cdead: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391839'
+2021-01-15 14:08:40,140 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3937ad08: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391842'
+2021-01-15 14:08:43,092 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@677e7f96: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391844'
+2021-01-15 14:08:44,959 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4917faef: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391846'
+2021-01-15 14:08:47,088 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3c9b3cd6: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391848'
+2021-01-15 14:08:50,427 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@38c099a0: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391850'
+2021-01-15 14:08:51,275 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@2c56c3e1: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391852'
+2021-01-15 14:08:53,540 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@5a609406: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391854'
+2021-01-15 14:08:56,541 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3f786e10: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391856'
+2021-01-15 14:08:57,480 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3c9fdc6: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391858'
+2021-01-15 14:08:58,788 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@199a6f95: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391859'
+2021-01-15 14:08:59,671 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@47041804: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391862'
+2021-01-15 14:09:00,620 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3bf0e61a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391864'
+2021-01-15 14:09:01,722 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@771b0b6f: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391865'
+2021-01-15 14:09:02,658 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3db734de: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391867'
+2021-01-15 14:09:03,702 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@5a94df54: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391870'
+2021-01-15 14:09:04,621 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@66e8222a: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391871'
+2021-01-15 14:09:05,800 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@49870deb: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391873'
+2021-01-15 14:09:06,678 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@4d92c1c1: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391875'
+2021-01-15 14:09:07,561 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3100c958: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391878'
+2021-01-15 14:09:08,604 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@165e4420: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391879'
+2021-01-15 14:09:09,859 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6747eb55: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391881'
+2021-01-15 14:09:11,113 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@3c80b2b5: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391883'
+2021-01-15 14:09:12,300 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@bfdf674: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391886'
+2021-01-15 14:09:13,441 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6fe6cc6f: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391887'
+2021-01-15 14:09:14,421 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@37a39f85: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391889'
+2021-01-15 14:09:15,338 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@e8f96de: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391891'
+2021-01-15 14:09:16,453 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@6a258f2d: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391893'
+2021-01-15 14:09:17,387 INFO Reports.ReportDAO [http-listener-1(4)] com.mysql.jdbc.JDBC4PreparedStatement@33f9a3b2: select ndb_change from ndb_change_log where ndb_change_log_type='PDCTXN' and status='UN-AUTHORIZED'  and ndb_attached_id='391895'
+2021-01-15 14:09:17,389 INFO Report_servelets.report_data_extract [http-listener-1(4)] get_pdc_rf_rurned_anal_bw out.flush called...
+2021-01-15 14:11:31,158 INFO DBoperationsDBO.customerDAO [http-listener-1(3)] com.mysql.jdbc.JDBC4PreparedStatement@1a66258a: SELECT 
+nptm_txn_master.idndb_customer_define_seller_id,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name
+FROM 
+ndb_pdc_txn_master nptm_txn_master inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nptm_txn_master.idndb_customer_define_seller_id = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define
+where
+nptm_txn_master.pdc_req_financing='CW' and 
+nptm_txn_master.pdc_chq_status_auth = 'UN-AUTHORIZED' and nptm_txn_master.pdc_chq_batch_no not in ('*') and nptm_txn_master.pdc_latest_modification ='NEW'  group by nptm_txn_master.idndb_customer_define_seller_id
