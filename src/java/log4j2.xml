@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="error" name="MyApp" packages="">
+    <appenders>
+        <Console name="MyFile" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level: %msg%n%throwable}{FATAL=Yellow, ERROR=red, WARN=blue, INFO=green, DEBUG=blue, TRACE=blue}"/>   
+        </Console>
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="D:/RMSSYSTEM/LOG/log.log" filePattern="D:/RMSSYSTEM/LOG/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </appenders>   
+    <loggers>
+        <root level="trace">
+            <appender-ref ref="MyFile"/>
+            <AppenderRef ref="RollingRandomAccessFile"/>
+     
+        </root>
+    </loggers>
+</configuration>
