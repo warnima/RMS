@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicalvicereport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d44d3861-29e6-431e-bac0-3d2d2abd8d99">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="15"/>
+	<parameter name="clientname" class="java.lang.String"/>
+	<parameter name="vehicalnum" class="java.lang.String"/>
+	<parameter name="bookserialnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select safe_custody_no, vehicle_no,book_serial_no,client_name,notes,b.status_desc,date_received,date_withdrawn from
+vehiclemaster a left outer join status_master b
+on a.status_code=b.status_code where  client_name = $P!{clientname} ]]>
+	</queryString>
+	<field name="safe_custody_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="book_serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_received" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_withdrawn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="191" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="7" width="555" height="20" uuid="14172441-2e67-4ff5-8455-c9b3f1c4b87b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehical Registration Details]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="455" y="29" width="100" height="20" uuid="38bf8ab8-8419-4c84-9e5f-c23ee53dec8e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="425" y="29" width="26" height="20" uuid="c2c25463-526f-499c-8662-d0b99ea33299"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="29" width="91" height="20" uuid="b00242e2-6c4a-4fa8-a63a-efa89dc9ebd8"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="69" width="91" height="20" uuid="7a3ec616-f03c-4928-a8fb-bab15d4e398a"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Book Serial NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="49" width="91" height="20" uuid="7d140261-0308-46c1-b01f-bd5439c11a51"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehical NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="89" width="91" height="20" uuid="737449e7-cdf3-40c4-9294-f5c3c51a3287"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Safe Custody NO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="109" width="255" height="20" uuid="4d20e97a-bb6c-45c0-a6a2-bad3fae36a97"/>
+				<textFieldExpression><![CDATA[$F{date_received}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="109" width="91" height="20" uuid="901ce18d-176d-44f2-b9b1-723c5478fdb5"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Of Recived :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="129" width="91" height="20" uuid="a201c40b-5218-44f6-9aca-ccd8ed5b0740"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Withdrawn :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="89" width="255" height="20" uuid="9c4f06ad-317c-4a76-8a45-ae8e8b9bd103"/>
+				<textFieldExpression><![CDATA[$F{safe_custody_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="69" width="255" height="20" uuid="e3589d82-c21b-40e8-9e3a-fbbeb4ddd7b1"/>
+				<textFieldExpression><![CDATA[$F{book_serial_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="129" width="255" height="20" uuid="01bd1607-9f54-4735-8964-f6f43ed83dbd"/>
+				<textFieldExpression><![CDATA[$F{date_withdrawn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="29" width="255" height="20" uuid="849e5aad-a3f6-492d-adce-09cb25e45af6"/>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="49" width="255" height="20" uuid="1a1fca2e-f021-47d8-9846-b83b94a23de9"/>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="149" width="255" height="42" uuid="c7a639d7-42c9-4f55-9edd-1b7c6f21baa8"/>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="149" width="91" height="20" uuid="ddd156fc-aede-4b36-add0-d81da2975dd5"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

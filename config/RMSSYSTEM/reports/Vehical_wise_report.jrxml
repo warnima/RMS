@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Vehical_wise_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="15d94f95-4756-4a3d-bfac-4be94341cd8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="clientname" class="java.lang.String"/>
+	<parameter name="vehicalnum" class="java.lang.String"/>
+	<parameter name="bookserialnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select safe_custody_no, vehicle_no,book_serial_no,client_name,notes,b.status_desc,date_received,date_withdrawn from
+vehiclemaster a left outer join status_master b
+on a.status_code=b.status_code where  client_name = $P{clientname} or vehicle_no =$P{vehicalnum} or book_serial_no = $P{bookserialnum}]]>
+	</queryString>
+	<field name="safe_custody_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="book_serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_received" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_withdrawn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="454" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="44" width="555" height="55" backcolor="#F0F0F0" uuid="e01e1e49-8733-4466-bc81-e36ca2e23956"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="47" width="119" height="26" uuid="39a037af-4335-4d7b-8e23-15e42ad76fd2"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="555" height="44" backcolor="#CCCCCC" uuid="0ed5a6d6-c160-4b0b-b34e-99d0167c71a5"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="435" y="8" width="111" height="28" uuid="8b05beb7-211d-48d3-970b-48b998ea6f13"/>
+				<imageExpression><![CDATA["C:\\Users\\Madhawa_10809\\Documents\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="113" y="47" width="238" height="26" uuid="66da9632-74d2-4482-a3a5-add43e175a70"/>
+				<textElement textAlignment="Right">
+					<font fontName="Traditional Arabic" size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Registration Details Of Vehicle No:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="460" y="77" width="94" height="20" uuid="318b51a8-e525-4b4d-bc45-506a4090f768"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="418" y="77" width="42" height="20" uuid="21a5baf3-6817-4c53-8cd3-57af4a8f9add"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="408" width="555" height="44" backcolor="#CCCCCC" uuid="52d9977f-1729-455d-8595-9f369f528ec5"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="309" width="124" height="29" uuid="bd7c7d49-df66-4e96-b95b-996a5ef1010c"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notes :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="130" width="124" height="23" uuid="c2d946d0-a4e2-473d-9ab7-b9cd6404bc9d"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="251" width="124" height="22" uuid="a30c0822-b52c-45c7-a4aa-edbc71b8cd16"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Of Recived :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="161" width="124" height="22" uuid="e0d81961-a4d3-4b96-b180-4c5b7b0fa08a"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle NO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="220" width="255" height="20" uuid="b4e78608-cffb-4d00-97df-a57761bee24e"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{safe_custody_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="190" width="255" height="20" uuid="35f8a44b-0a2a-4b39-8fd2-421beec775fa"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_serial_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="190" width="124" height="23" uuid="b0bac988-759f-4b7d-bded-fdf47b18ac99"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Book Serial NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="220" width="124" height="24" uuid="44ffe197-520a-4710-836d-29df06053c92"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Safe Custody NO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="251" width="255" height="20" uuid="a13e64ab-3a72-49ce-b5f1-54c17e08ace2"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_received}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="280" width="124" height="24" uuid="9d80febc-8865-4eab-80e6-7ed301566959"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Withdrawn :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="309" width="255" height="99" uuid="a9443963-1adc-4500-910b-2c211c14d62b"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="132" width="255" height="20" uuid="ca789a43-891a-477f-842f-c18f487e2f9c"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="161" width="255" height="20" uuid="06b37636-b252-4ffd-b2e8-7ed6a9bb55c5"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="284" width="255" height="20" uuid="4e8523d6-111c-4677-953a-b25fb2c27c31"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_withdrawn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="251" y="415" width="63" height="20" uuid="f04d3f0d-a9af-4536-afc0-ec09e7d21a9c"/>
+				<textElement>
+					<font fontName="Traditional Arabic"/>
+				</textElement>
+				<text><![CDATA[Page 1 of 1]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

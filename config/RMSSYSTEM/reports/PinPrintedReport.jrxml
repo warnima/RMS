@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PinPrintedReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="812b356f-22d4-43e6-9eb3-fbbf4a614fb1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="printid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT customerid,customerCID,customer_name,authorized_user,authorized_date ,
+CONCAT('',cusaddress1,',', cusaddress2,',',cuscountry,',',cusaddress3) AS cusaddress FROM customer_mast where reportID = $P{printid}]]>
+	</queryString>
+	<field name="customerid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customerCID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="authorized_user" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="authorized_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="2" width="553" height="42" backcolor="#CCCCCC" uuid="3e9e9c5b-3b2b-4a34-b355-881edf28e13d"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="440" y="8" width="111" height="28" uuid="4373eea7-a273-482c-922f-aa9ae2d624a5"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="3" y="52" width="204" height="18" uuid="ffb5e04b-e7f1-43cf-9834-ece2a0adcb63"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[FORTRESS PIN PRINTING REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="70" width="134" height="19" uuid="d7510f25-770a-42e8-a255-16401f16c0bc"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PIN PRINED DATE & TIME :]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd h.mm a">
+				<reportElement x="4" y="13" width="138" height="20" uuid="bc1d8cab-3360-4443-a8a8-2b8f8e8bedd9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="90" width="152" height="19" uuid="91ee2986-a377-4dac-bda9-bdf2481a6b15"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[LOGED INTO THE SYSTEM AS :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="112" width="551" height="1" uuid="3920e311-0e49-4c6b-b306-282b5ddd300b"/>
+			</line>
+			<textField>
+				<reportElement x="155" y="90" width="100" height="20" uuid="47c78a64-702e-4c66-8a22-02f53911cacf"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{authorized_user}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="137" y="70" width="149" height="20" uuid="563cb0d0-9b78-4080-a4a4-bce7bee137f8"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{authorized_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="316" y="3" width="235" height="12" uuid="d0cfb462-c46f-4a05-b3c9-c039960e5947"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Address Printed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="3" width="106" height="12" uuid="3ce69583-17a4-4f17-be9a-bc7c63964ffb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Name Printed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="3" width="102" height="12" uuid="a7195be2-ebc6-422c-9c20-f0f174f95500"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[User ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="3" width="68" height="12" uuid="81acf3cd-f653-4469-b0a0-dca8ebf2a19a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="105" y="3" width="102" height="31" uuid="42d53ef2-7ee6-4871-91de-b5f44a43f8d1"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="4" width="106" height="30" uuid="1ef72d8d-90fe-4035-ad72-de00478e9eee"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="4" width="19" height="30" uuid="9599861a-a755-4642-af36-b542758a8eb3"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="4" width="235" height="30" uuid="84ada83a-f91f-4a4b-99b7-b591a6d607a6"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="4" width="68" height="30" uuid="889726e1-65ae-4a9a-96dd-537855f3660f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerCID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-1" y="0" width="556" height="44" backcolor="#CCCCCC" uuid="5426567c-195f-45c3-8b9e-67baecd91cf0"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField evaluationTime="Page">
+				<reportElement x="255" y="10" width="27" height="20" uuid="f103d7f6-eeb0-489c-b729-ceacdaee8318"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="229" y="10" width="25" height="20" uuid="f80676e1-7c61-492d-a57e-b49f1981b74c"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="284" y="10" width="100" height="20" uuid="66da1a61-1982-4ef6-957b-bbdf4fbd7eef"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="10" width="25" height="20" uuid="a8bc4c75-1046-4632-ba76-b4ad2d5a4393"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

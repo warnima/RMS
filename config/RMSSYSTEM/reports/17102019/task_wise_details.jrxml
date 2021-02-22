@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="task_wise_details" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13d1a6eb-cbb3-40ed-98da-d0614315ab3c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pro_refnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select pro_rej_id,pro_regcat,pro_qarejreason, CASE WHEN pro_devacc='Y' then 'Accepted' WHEN pro_devacc='N' then 'Decline' Else 'N/A' end as pro_devacc ,pro_devnote,pro_refnum,pro_qaround from qa_rejections_details where pro_refnum= $P{pro_refnum}]]>
+	</queryString>
+	<field name="pro_rej_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_regcat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_qarejreason" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_devacc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_devnote" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_refnum" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_qaround" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="2" width="553" height="42" backcolor="#CCCCCC" uuid="a243c8d2-03db-4792-94c3-7d1456abe08c"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="444" y="9" width="111" height="28" uuid="c657a22f-6f46-4961-8ecf-04f027e04013"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="136" y="48" width="174" height="27" uuid="78ab12fd-a4e6-45ed-853b-bcbd5cf33264"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[QA ROUND DETAILS OF : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="48" width="125" height="20" uuid="411a24fa-e22a-4b86-a5c3-e5695dc14588"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_refnum}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd h.mm a">
+				<reportElement x="32" y="12" width="104" height="20" uuid="36d7babd-de1c-4593-b276-5b353a924f2a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="12" width="24" height="20" uuid="370abfa1-d6cb-4e2b-aae7-1a7556bb5656"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="4" width="75" height="20" uuid="e473958d-9cec-4994-9276-33503204b2af"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[QA Round]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="4" width="88" height="20" uuid="4f33c1f8-34ab-46a1-ac9d-7b10c3348eb9"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Reject Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="4" width="128" height="20" uuid="520728ff-f7a0-4dc9-b395-f2e4ddfdc306"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Reason]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="4" width="146" height="20" uuid="9d915060-25f4-49a0-a595-346097ad1d39"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Note]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="4" width="62" height="20" uuid="a12cd108-4ff4-42f3-b05c-e4cea612c905"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Dev Remark]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="4" width="19" height="20" uuid="82ac2faa-7e1f-4b55-80ac-602cc067a21c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="208" y="6" width="128" height="20" uuid="ebc3633d-f103-41c1-bc4c-2af485b0499e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_qarejreason}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="6" width="146" height="20" uuid="7bb33fd3-260f-4849-8e60-7e19bfd3882a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_devnote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="6" width="60" height="20" uuid="3c30f609-0982-401e-a2f7-9b3b9727b092"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_devacc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="6" width="100" height="20" uuid="1b730c2a-e7a4-45ae-aa20-161234a41b9c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_regcat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="4" width="72" height="20" uuid="ccdcc7b4-8376-4fd1-975d-15c480087182"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_qaround}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="6" width="27" height="20" uuid="7f1bdcd8-4182-44cf-aa84-3e347ed4fdcc"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_rej_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<textField evaluationTime="Page">
+				<reportElement x="274" y="9" width="26" height="20" uuid="53323830-28ff-47af-b40b-d9156fcf5c62"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="556" height="44" backcolor="#CCCCCC" uuid="717f62fd-5634-4bea-8c9a-68e06316882a"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="326" y="9" width="100" height="20" uuid="19e008c3-e468-4bfc-a3a2-4e5d903fd4d2"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="305" y="9" width="25" height="20" uuid="245469c6-120f-4c62-a045-402296d7048a"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="9" width="25" height="20" uuid="a89b8324-f23f-4e40-b34c-cda93b51f070"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField evaluationTime="Page">
+				<reportElement x="283" y="9" width="27" height="20" uuid="58e1853f-a6d7-4eae-b177-c218e574c4ed"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

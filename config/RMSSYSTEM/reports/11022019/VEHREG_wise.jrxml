@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VEHREG_wise" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04aa96be-5e15-4991-89c5-fa04f9bca456">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="vehkey" class="java.lang.String"/>
+	<parameter name="vehicalnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select safe_custody_no,veh_key,vehicle_no,book_serial_no,client_name,notes,b.status_desc,date_format(date_received,'%Y/%m/%d') date_received,date_format(date_withdrawn,'%Y/%m/%d') date_withdrawn
+from
+vehiclemaster a left outer join status_master b
+on a.status_code=b.status_code
+where vehicle_no=$P{vehicalnum} and veh_key = $P{vehkey}]]>
+	</queryString>
+	<field name="safe_custody_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="veh_key" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="book_serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_received" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_withdrawn" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="556" height="44" backcolor="#CCCCCC" uuid="3de4d9ce-cb6b-4598-840f-f7a978aee8b3"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="435" y="8" width="111" height="28" uuid="61250878-6cdf-4e75-b5d8-ddd14630b81b"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="44" width="556" height="55" backcolor="#F0F0F0" uuid="a82edf49-77eb-4fab-882b-ee9ca6878836"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="52" width="288" height="26" uuid="c1fec6b2-12d9-4a75-8297-188d5906e975"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Lodge Vehicle CR Book Details For:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="80" width="140" height="19" uuid="d32f65ab-d822-40b2-8eb1-eb04a0cf0db3"/>
+				<textElement>
+					<font fontName="Courier New" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Printed Date And Time :]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd h.mm a">
+				<reportElement x="446" y="80" width="109" height="20" uuid="eeb86d78-4894-4b88-83ac-4a1c04f8eac4"/>
+				<textElement>
+					<font fontName="Courier New" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="52" width="118" height="20" uuid="9b28be9e-0cc8-46b8-b505-a5dd372fcf16"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vehicalnum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="365" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="117" width="132" height="24" uuid="bf4e072d-11f3-49c1-a9af-600662487162"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Safe Custody No       ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="143" width="132" height="22" uuid="1eea0f29-c560-4196-b05b-8574b465cff5"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Received       ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="166" width="132" height="24" uuid="b2522325-273c-4050-a6b5-48202dd95e4e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date of Withdrawn     ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="92" width="132" height="23" uuid="33492bf4-7bcc-4fcf-87bf-ed65f8e3bed6"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Book Serial No        ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="219" width="132" height="29" uuid="45a4f7b9-5776-4bfc-82e8-3f34b734fced"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notes                 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="43" width="132" height="23" uuid="73c8fdab-772e-44b5-864b-6ec5421f06c3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Name           ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="68" width="132" height="22" uuid="1eb76d3d-0eb7-4536-b1cc-2d18a52d4e59"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle No            ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="169" y="118" width="255" height="20" uuid="c0b2a71e-657e-490d-b6c8-3452cb27c70a"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{safe_custody_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="94" width="255" height="20" uuid="ea4b8a5a-d723-4668-9fb6-5e43cf75187c"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_serial_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="221" width="255" height="99" uuid="6f7bdf87-b6f8-4fd9-a68e-74adac3f58e5"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{notes} != null) ? $F{notes}: "N/A"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="143" width="255" height="23" uuid="56adceb7-10ff-414b-a248-e63a3a50173a"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_received}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="45" width="255" height="20" uuid="7f8c33fa-b31e-4f78-9e91-e0c965d173a9"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="192" width="132" height="24" uuid="6d42cc4f-3216-4244-b576-d9d05406fecc"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status                ]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="169" y="192" width="255" height="24" uuid="02da8e79-622c-45c8-bcc1-7c7458e82d3f"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status_desc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="166" width="255" height="20" uuid="71909998-b302-495f-9c12-8682e79572cf"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{date_withdrawn} != null) ? $F{date_withdrawn} : "N/A"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="162" y="41" width="5" height="20" uuid="046f3004-7592-4fc5-ba4e-bc4495c5f57a"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="66" width="5" height="20" uuid="1812d495-4285-4b6d-acf2-c432ce911e1f"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="91" width="5" height="20" uuid="89910b33-0f3a-446e-b32e-b2d7d66f0e96"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="115" width="5" height="20" uuid="7f2aacce-4241-48f4-8a69-1de8b2a0fa6f"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="141" width="5" height="20" uuid="dc0ae62d-c976-432b-b3c5-3046fe5c5126"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="164" width="5" height="20" uuid="edaf0114-87c0-4048-aac4-e10932d12bc4"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="190" width="5" height="20" uuid="efd00b4f-2842-4123-9bcb-cddce74dc3f2"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="218" width="5" height="20" uuid="02972d4a-2ffa-436f-a463-de3eaec12710"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="169" y="68" width="254" height="20" uuid="c182b9dc-7f60-4e4d-a724-8bb256ba9c4d"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="555" height="44" backcolor="#CCCCCC" uuid="571768ee-4ab0-4f4b-8e51-167b83ae8e65"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="12" width="25" height="20" uuid="0176e7ad-0745-4843-8fc0-167e825657ac"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="241" y="12" width="25" height="20" uuid="e1251e62-0077-46a6-ac74-a126f46b769d"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField evaluationTime="Page">
+				<reportElement x="268" y="12" width="26" height="20" uuid="135daf40-09c9-4175-ad51-806cac3b0383"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="306" y="12" width="100" height="20" uuid="416373a5-85fa-4227-b78e-871fe5055c47"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

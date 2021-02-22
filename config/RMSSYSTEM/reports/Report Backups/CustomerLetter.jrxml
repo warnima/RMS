@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CustomerLetter" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a61c820-36f4-4d50-a9b3-885f2ffc99dd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="221"/>
+	<subDataset name="dataset1" uuid="49477e36-361c-4a02-802f-1f794dbce2f5"/>
+	<subDataset name="dataset2" uuid="5bef48a9-aee6-4b38-abbd-c1efc3ab61cf"/>
+	<parameter name="customer_mastid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT customerid,customer_name,cusaddress1,cusaddress2,cusaddress3,cuscountry FROM customer_mast where customer_mastid = $P{customer_mastid}]]>
+	</queryString>
+	<field name="customerid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuscountry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="122" splitType="Stretch">
+			<textField pattern="yyyy MMMMM dd">
+				<reportElement x="15" y="19" width="138" height="15" uuid="ca2443d3-e9c5-4ba9-b3e8-12e6bd9822f8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="43" width="411" height="15" uuid="4d1f18b3-1b9e-4473-a7b9-bd7e40ce1f4f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="58" width="411" height="15" uuid="8b2abdd6-1dd7-489a-8d9d-2e8733ed47a2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="73" width="411" height="15" uuid="bda5cd9e-8a21-4291-8c52-babb4e9d3b40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="101" width="411" height="15" uuid="ef9d107d-b95f-44eb-ac66-4d0c4e55cf60"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="86" width="411" height="15" uuid="292e23f5-0bae-4743-a6fb-c7661f8147ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuscountry}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="4" width="92" height="19" uuid="53d76794-3e87-4998-abda-c15eb6819202"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Dear Sir / Madam, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="23" width="60" height="19" uuid="141b358d-5e04-4f54-8a61-6b6ffe5732d7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Welcome to ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="23" width="83" height="19" uuid="663821e0-1d5c-466d-b9fd-295e720bc755"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NDB Bank Online ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="42" width="503" height="30" uuid="935e8875-6e78-4203-8e06-5f991dadee93"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[We are delighted to welcome you to a World of convenience with our World Class Internet Banking service, NDB Bank Online. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="75" width="134" height="15" uuid="15a74022-ac34-43e2-bed1-4e8c8dfb1a3d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[Your User ID for this service : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="75" width="369" height="15" uuid="b256fab3-8e8b-42cf-b9b6-9265227e21a9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="347" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="285" width="524" height="15" uuid="71038a2d-d474-4572-8e08-dde8ca08e98a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Yours faithfully, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="300" width="524" height="15" uuid="43ec45df-4625-4811-a57b-f03746f5010d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Ganga Wanigaratne ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="315" width="524" height="15" uuid="973c3664-0641-44c3-9dfd-e36979b9ca69"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Assistant Vice President]]></text>
+			</staticText>
+			<image>
+				<reportElement x="15" y="235" width="102" height="50" uuid="b6f08334-3347-494c-8267-78d95f030fb2"/>
+				<imageExpression><![CDATA["D:\\reports\\pinsignature.JPG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="15" y="12" width="503" height="212" uuid="0a9e8c9c-9b52-4551-bc03-210f53ca72f5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[In order to maintain the security of the service, we request you to call at your branch personally to collect your login/transaction password. When you log-in for the first time, you will be requested to change your existing login/transaction passwords. The single password generated by the bank will initially be accepted as both login and transaction password Remember that the password is case-sensitive and may consist of alphabetic, numerical and non-alphanumeric characters, so you would need to key it in, exactly as shown. Your new passwords should be at least 8 characters in length.
+
+On every occasion you login, the system checks the 'User ID' and 'password'. If an incorrect User ID or password is entered three times consecutively, the system will lock the User ID, for security reasons. In case of a User ID lock, please inform the bank in writing, to re-activate same.
+
+If you need any assistance or clarifications, please call our 24 hour Call Centre on 2448888. Your feedback on our Internet Banking service would also be welcome.
+
+Please use our mailbox facility to communicate with the bank and request any changes to your personal details or other information given in your original Online application form.
+
+Thank you for banking with NDB Bank.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="330" width="524" height="15" uuid="4e72946e-67bd-457f-acdc-91f34f5194cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Operations Account Services & Credit Administration]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report24" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81abd16d-0c4b-4c18-ab62-1cc4c2fe1dbd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_folio_no` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_folio_no,
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_id_no` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_no,
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_id_type` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_type,
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_title` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_title,
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_initials` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_initials,
+     ndb_slms_amlg_amalgamated_s_hold_file.`amalgted_s_hold_name` AS ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_name
+FROM
+     `ndb_slms_amlg_amalgamated_s_hold_file` ndb_slms_amlg_amalgamated_s_hold_file]]>
+	</queryString>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_folio_no" class="java.lang.String"/>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_no" class="java.lang.String"/>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_type" class="java.lang.String"/>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_title" class="java.lang.String"/>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_initials" class="java.lang.String"/>
+	<field name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_name" class="java.lang.String"/>
+	<group name="ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_name">
+		<groupExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_name}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#006600" uuid="3fc17a38-9110-4173-b339-1cf41633e3ef"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_name}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="159bf325-4937-4258-930b-7bfa85becdfb"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="801" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="553" height="801" uuid="6fad063d-2b91-4b26-a270-ea6634178ca7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="36"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{parameter1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="24eb9d5f-8b11-40e9-8554-41d0c5ec812c"/>
+				<imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="98fb1502-7062-4ff4-8f24-488dd7a11362"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Green Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="46" width="174" height="22" uuid="5c60e5fb-c2c1-4ba6-87c4-bf330566c46b"/>
+				<text><![CDATA[Leaf Green SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="2971a06c-b282-4765-ab42-b310d420a3e9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="30ce7568-030e-42e4-ba1c-39d0a5fc8bd4"/>
+				<text><![CDATA[ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_folio_no]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="19" width="111" height="15" uuid="4fd3c7a0-e0a9-4d22-8494-dc1ecac8514d"/>
+				<text><![CDATA[ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_no]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="111" height="15" uuid="47bd88ac-7bef-4953-b93c-30df75009577"/>
+				<text><![CDATA[ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="19" width="111" height="15" uuid="7cfd7a5e-34af-42a2-bc38-267de9ce2568"/>
+				<text><![CDATA[ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="14b03982-0b68-4f09-8706-95a269710680"/>
+				<text><![CDATA[ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_initials]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="84e08a88-25d5-4de4-b3b0-935631bfd3d5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="fbbcbda4-d149-43ac-8234-3ac052f3d029"/>
+				<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_folio_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="e371075e-5ae2-45db-b286-232ac15de2e2"/>
+				<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="0d3b2f46-cc9c-41a3-befa-922789fc8974"/>
+				<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_id_type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="ed3a419b-fd83-4f60-8918-f0152084b66c"/>
+				<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="7997c6f1-7d94-4e67-8623-d9cc7cd1449c"/>
+				<textFieldExpression><![CDATA[$F{ndb_slms_amlg_amalgamated_s_hold_file_amalgted_s_hold_initials}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="5ae1a64c-c3e9-48e4-80ff-1a7c2f869f66"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="2c94dfc7-d2b4-4058-b519-704be882aee8"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="c8e2e25e-37cf-4ccd-8907-7dcffb854ab1"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="32b83760-d236-409c-81c3-0538c99deba3"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

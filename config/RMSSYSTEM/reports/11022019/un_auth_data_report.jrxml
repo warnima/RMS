@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="un_auth_data_report" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01a32c88-961e-4351-91a3-587ff4314f23">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="seller_id" class="java.lang.String"/>
+	<parameter name="printed_by" class="java.lang.String"/>
+	<parameter name="system_date " class="java.lang.String"/>
+	<parameter name="pdc_type" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ndb_pdc_txn_master.`idndb_pdc_txn_master` AS ndb_pdc_txn_master_idndb_pdc_txn_master,
+     ndb_pdc_txn_master.`pdc_req_financing` AS ndb_pdc_txn_master_pdc_req_financing,
+     ndb_pdc_txn_master.`idndb_customer_define_seller_id` AS ndb_pdc_txn_master_idndb_customer_define_seller_id,
+     ndb_pdc_txn_master.`idndb_customer_define_buyer_id` AS ndb_pdc_txn_master_idndb_customer_define_buyer_id,
+     ndb_pdc_txn_master.`idndb_bank_master_file` AS ndb_pdc_txn_master_idndb_bank_master_file,
+     ndb_pdc_txn_master.`pdc_bank_code` AS ndb_pdc_txn_master_pdc_bank_code,
+     ndb_pdc_txn_master.`pdc_branch_code` AS ndb_pdc_txn_master_pdc_branch_code,
+     ndb_pdc_txn_master.`pdc_chq_number` AS ndb_pdc_txn_master_pdc_chq_number,
+     ndb_pdc_txn_master.`pdc_booking_date` AS ndb_pdc_txn_master_pdc_booking_date,
+     ndb_pdc_txn_master.`pdc_value_date` AS ndb_pdc_txn_master_pdc_value_date,
+     ndb_pdc_txn_master.`pdc_lquid_date` AS ndb_pdc_txn_master_pdc_lquid_date,
+     ndb_pdc_txn_master.`pdc_chq_amu` AS ndb_pdc_txn_master_pdc_chq_amu,
+     ndb_pdc_txn_master.`pdc_chq_status` AS ndb_pdc_txn_master_pdc_chq_status,
+     ndb_pdc_txn_master.`pdc_chq_status_auth` AS ndb_pdc_txn_master_pdc_chq_status_auth,
+     ndb_seller_has_buyers.`idndb_seller_has_buyers` AS ndb_seller_has_buyers_idndb_seller_has_buyers,
+     ndb_seller_has_buyers.`idndb_customer_define_seller` AS ndb_seller_has_buyers_idndb_customer_define_seller,
+     ndb_seller_has_buyers.`idndb_customer_define_buyer` AS ndb_seller_has_buyers_idndb_customer_define_buyer,
+     ndb_customer_define.`idndb_customer_define` AS ndb_customer_define_idndb_customer_define,
+     ndb_customer_define.`cust_id` AS ndb_customer_define_cust_id,
+     ndb_customer_define.`cust_name` AS ndb_customer_define_cust_name,
+     ndb_cust_prod_map.`idndb_cust_prod_map` AS ndb_cust_prod_map_idndb_cust_prod_map,
+     ndb_cust_prod_map.`idndb_customer_define` AS ndb_cust_prod_map_idndb_customer_define,
+     ndb_customer_define_A.`idndb_customer_define` AS ndb_customer_define_A_idndb_customer_define,
+     ndb_customer_define_A.`cust_id` AS ndb_customer_define_A_cust_id,
+     ndb_customer_define_A.`cust_name` AS ndb_customer_define_A_cust_name,
+     ndb_cust_prod_map_A.`idndb_cust_prod_map` AS ndb_cust_prod_map_A_idndb_cust_prod_map,
+     ndb_cust_prod_map_A.`idndb_customer_define` AS ndb_cust_prod_map_A_idndb_customer_define,
+     ndb_pdc_txn_master.`pdc_chq_mod_by` AS ndb_pdc_txn_master_pdc_chq_mod_by
+FROM
+     `ndb_seller_has_buyers` ndb_seller_has_buyers INNER JOIN `ndb_pdc_txn_master` ndb_pdc_txn_master ON ndb_seller_has_buyers.`idndb_seller_has_buyers` = ndb_pdc_txn_master.`idndb_customer_define_buyer_id`
+     AND ndb_seller_has_buyers.`idndb_customer_define_seller` = ndb_pdc_txn_master.`idndb_customer_define_seller_id`
+     INNER JOIN `ndb_cust_prod_map` ndb_cust_prod_map ON ndb_seller_has_buyers.`idndb_customer_define_seller` = ndb_cust_prod_map.`idndb_cust_prod_map`
+     INNER JOIN `ndb_cust_prod_map` ndb_cust_prod_map_A ON ndb_seller_has_buyers.`idndb_customer_define_buyer` = ndb_cust_prod_map_A.`idndb_cust_prod_map`
+     INNER JOIN `ndb_customer_define` ndb_customer_define_A ON ndb_cust_prod_map_A.`idndb_customer_define` = ndb_customer_define_A.`idndb_customer_define`
+     INNER JOIN `ndb_customer_define` ndb_customer_define ON ndb_cust_prod_map.`idndb_customer_define` = ndb_customer_define.`idndb_customer_define`
+WHERE
+     pdc_req_financing = $P{pdc_type}
+ AND pdc_chq_status_auth = 'UN-AUTHORIZED'
+ AND idndb_customer_define_seller_id = $P{seller_id} AND pdc_chq_batch_no ='*']]>
+	</queryString>
+	<field name="ndb_pdc_txn_master_idndb_pdc_txn_master" class="java.lang.Integer"/>
+	<field name="ndb_pdc_txn_master_pdc_req_financing" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_seller_id" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_buyer_id" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_bank_master_file" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_bank_code" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_branch_code" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_number" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_booking_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_value_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_lquid_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_amu" class="java.lang.Double"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_status" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_status_auth" class="java.lang.String"/>
+	<field name="ndb_seller_has_buyers_idndb_seller_has_buyers" class="java.lang.Integer"/>
+	<field name="ndb_seller_has_buyers_idndb_customer_define_seller" class="java.lang.String"/>
+	<field name="ndb_seller_has_buyers_idndb_customer_define_buyer" class="java.lang.String"/>
+	<field name="ndb_customer_define_idndb_customer_define" class="java.lang.Integer"/>
+	<field name="ndb_customer_define_cust_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_name" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_idndb_customer_define" class="java.lang.String"/>
+	<field name="ndb_customer_define_A_idndb_customer_define" class="java.lang.Integer"/>
+	<field name="ndb_customer_define_A_cust_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_A_cust_name" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_A_idndb_customer_define" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_mod_by" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="35" forecolor="#CCCCCC" backcolor="#000000" uuid="9a6c2e87-153c-4219-9adc-a184eba3f36d"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="13" width="117" height="20" forecolor="#FFFFFF" uuid="9e8c51b1-ff82-49e4-a1ac-4359eb851d0b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[NDB RMS SYSTEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="647" y="13" width="154" height="20" forecolor="#FFFFFF" uuid="f8893de7-286e-4735-b512-703724ab7494"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[UN-AUTHORIZED PDC DATA REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="35" width="802" height="19" forecolor="#FF0000" backcolor="#CC0000" uuid="45bb43fd-8f09-40f6-ba45-2389d109e2e9"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="547" y="33" width="164" height="20" forecolor="#FFFFFF" uuid="dc682eab-f42e-45a2-b6ad-3c29163e8c09"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[RMS SYSTEM DATE :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="711" y="35" width="90" height="18" forecolor="#FFFFFF" uuid="3dc3029a-ec2d-41ab-a310-1e62bb8dd199"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{system_date }]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="44" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="71" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<textField pattern="#,###.00">
+				<reportElement x="474" y="2" width="114" height="15" uuid="38f51e49-957e-4d14-a361-8a4ef78de200"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_chq_amu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="694" y="2" width="106" height="15" uuid="06439a5d-4b05-40b1-9e87-c8a75f5ec33d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_chq_mod_by}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="592" y="2" width="97" height="15" uuid="74be593d-9276-4950-93aa-5a65cd191dbb"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_value_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="2" width="72" height="15" uuid="e247cb3e-60da-48d2-b523-014091a90363"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_branch_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="2" width="75" height="15" uuid="c3380cb8-cb1c-4255-b09c-371a914ab3ef"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_bank_code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="221" y="2" width="96" height="15" uuid="6fe88305-2982-4d3d-b16c-29b757e4afb6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_pdc_txn_master_pdc_chq_amu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="2" width="98" height="15" uuid="7cd6a4ee-9239-48ee-baf7-a911620c6551"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_customer_define_A_cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="2" width="95" height="15" uuid="c73d8108-3370-48b5-bcbf-9fdc55c9711d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ndb_customer_define_cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="2" width="20" height="15" uuid="1aebc515-d898-40f8-ad71-e506e5a7a417"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="116" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="1" y="2" width="692" height="18" forecolor="#B89F7D" backcolor="#000000" uuid="6ad7d619-e951-4d18-a379-b8c15fd59872"/>
+			</frame>
+			<rectangle>
+				<reportElement x="693" y="2" width="110" height="18" backcolor="#666666" uuid="b0d9fe09-3137-4c29-b1dd-0df5be6d6e36"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement style="Column header" x="684" y="1" width="80" height="20" forecolor="#FFFFFF" uuid="54171aad-9721-47b3-8c92-434bd71ce113"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="764" y="1" width="40" height="20" forecolor="#FFFFFF" uuid="ec16d91c-50c5-4ea6-bc55-55ee3f7aa407"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

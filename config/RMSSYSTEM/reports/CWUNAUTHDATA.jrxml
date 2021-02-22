@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CWUNAUTHDATA" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b8b66abd-9626-42a7-91a8-b06e70f63c9a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="seller_id" class="java.lang.String"/>
+	<parameter name="pdc_type" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ndb_pdc_txn_master.`idndb_pdc_txn_master` AS ndb_pdc_txn_master_idndb_pdc_txn_master,
+     ndb_pdc_txn_master.`pdc_req_financing` AS ndb_pdc_txn_master_pdc_req_financing,
+     ndb_pdc_txn_master.`idndb_customer_define_seller_id` AS ndb_pdc_txn_master_idndb_customer_define_seller_id,
+     ndb_pdc_txn_master.`idndb_customer_define_buyer_id` AS ndb_pdc_txn_master_idndb_customer_define_buyer_id,
+     ndb_pdc_txn_master.`idndb_bank_master_file` AS ndb_pdc_txn_master_idndb_bank_master_file,
+     ndb_pdc_txn_master.`pdc_bank_code` AS ndb_pdc_txn_master_pdc_bank_code,
+     ndb_pdc_txn_master.`pdc_branch_code` AS ndb_pdc_txn_master_pdc_branch_code,
+     ndb_pdc_txn_master.`pdc_chq_number` AS ndb_pdc_txn_master_pdc_chq_number,
+     ndb_pdc_txn_master.`pdc_booking_date` AS ndb_pdc_txn_master_pdc_booking_date,
+     ndb_pdc_txn_master.`pdc_value_date` AS ndb_pdc_txn_master_pdc_value_date,
+     ndb_pdc_txn_master.`pdc_lquid_date` AS ndb_pdc_txn_master_pdc_lquid_date,
+     ndb_pdc_txn_master.`pdc_chq_amu` AS ndb_pdc_txn_master_pdc_chq_amu,
+     ndb_pdc_txn_master.`pdc_chq_status` AS ndb_pdc_txn_master_pdc_chq_status,
+     ndb_pdc_txn_master.`pdc_chq_status_auth` AS ndb_pdc_txn_master_pdc_chq_status_auth,
+     ndb_seller_has_buyers.`idndb_seller_has_buyers` AS ndb_seller_has_buyers_idndb_seller_has_buyers,
+     ndb_seller_has_buyers.`idndb_customer_define_seller` AS ndb_seller_has_buyers_idndb_customer_define_seller,
+     ndb_seller_has_buyers.`idndb_customer_define_buyer` AS ndb_seller_has_buyers_idndb_customer_define_buyer,
+     ndb_customer_define.`idndb_customer_define` AS ndb_customer_define_idndb_customer_define,
+     ndb_customer_define.`cust_id` AS ndb_customer_define_cust_id,
+     ndb_customer_define.`cust_name` AS ndb_customer_define_cust_name,
+     ndb_cust_prod_map.`idndb_cust_prod_map` AS ndb_cust_prod_map_idndb_cust_prod_map,
+     ndb_cust_prod_map.`idndb_customer_define` AS ndb_cust_prod_map_idndb_customer_define,
+     ndb_customer_define_A.`idndb_customer_define` AS ndb_customer_define_A_idndb_customer_define,
+     ndb_customer_define_A.`cust_id` AS ndb_customer_define_A_cust_id,
+     ndb_customer_define_A.`cust_name` AS ndb_customer_define_A_cust_name,
+     ndb_cust_prod_map_A.`idndb_cust_prod_map` AS ndb_cust_prod_map_A_idndb_cust_prod_map,
+     ndb_cust_prod_map_A.`idndb_customer_define` AS ndb_cust_prod_map_A_idndb_customer_define
+FROM
+     `ndb_seller_has_buyers` ndb_seller_has_buyers INNER JOIN `ndb_pdc_txn_master` ndb_pdc_txn_master ON ndb_seller_has_buyers.`idndb_seller_has_buyers` = ndb_pdc_txn_master.`idndb_customer_define_buyer_id`
+     AND ndb_seller_has_buyers.`idndb_customer_define_seller` = ndb_pdc_txn_master.`idndb_customer_define_seller_id`
+     INNER JOIN `ndb_cust_prod_map` ndb_cust_prod_map ON ndb_seller_has_buyers.`idndb_customer_define_seller` = ndb_cust_prod_map.`idndb_cust_prod_map`
+     INNER JOIN `ndb_cust_prod_map` ndb_cust_prod_map_A ON ndb_seller_has_buyers.`idndb_customer_define_buyer` = ndb_cust_prod_map_A.`idndb_cust_prod_map`
+     INNER JOIN `ndb_customer_define` ndb_customer_define_A ON ndb_cust_prod_map_A.`idndb_customer_define` = ndb_customer_define_A.`idndb_customer_define`
+     INNER JOIN `ndb_customer_define` ndb_customer_define ON ndb_cust_prod_map.`idndb_customer_define` = ndb_customer_define.`idndb_customer_define`
+WHERE
+     pdc_req_financing = $P{seller_id}
+ AND pdc_chq_status_auth = 'UN-AUTHORIZED'
+ AND idndb_customer_define_seller_id = $P{pdc_type}]]>
+	</queryString>
+	<field name="ndb_pdc_txn_master_idndb_pdc_txn_master" class="java.lang.Integer"/>
+	<field name="ndb_pdc_txn_master_pdc_req_financing" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_seller_id" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_buyer_id" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_bank_master_file" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_bank_code" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_branch_code" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_number" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_booking_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_value_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_lquid_date" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_amu" class="java.lang.Double"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_status" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_pdc_chq_status_auth" class="java.lang.String"/>
+	<field name="ndb_seller_has_buyers_idndb_seller_has_buyers" class="java.lang.Integer"/>
+	<field name="ndb_seller_has_buyers_idndb_customer_define_seller" class="java.lang.String"/>
+	<field name="ndb_seller_has_buyers_idndb_customer_define_buyer" class="java.lang.String"/>
+	<field name="ndb_customer_define_idndb_customer_define" class="java.lang.Integer"/>
+	<field name="ndb_customer_define_cust_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_name" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_idndb_customer_define" class="java.lang.String"/>
+	<field name="ndb_customer_define_A_idndb_customer_define" class="java.lang.Integer"/>
+	<field name="ndb_customer_define_A_cust_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_A_cust_name" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_A_idndb_customer_define" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="133" y="21" width="100" height="20" uuid="c6052274-8b43-4091-9311-fd6e29ea2b79"/>
+				<text><![CDATA[TEST REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="63" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8d55d682-55ff-4104-a605-18772c363462">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="type" class="java.lang.String">
+		<defaultValueExpression><![CDATA["A"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select *  from changelog ;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[ID]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[LOG TYPE]]></fieldDescription>
+	</field>
+	<field name="oldval" class="java.lang.String">
+		<fieldDescription><![CDATA[OLD VALUE]]></fieldDescription>
+	</field>
+	<field name="newval" class="java.lang.String">
+		<fieldDescription><![CDATA[NEW VALUE]]></fieldDescription>
+	</field>
+	<field name="creaby" class="java.lang.String">
+		<fieldDescription><![CDATA[CREATE BY]]></fieldDescription>
+	</field>
+	<field name="creadt" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[CREATE DATE]]></fieldDescription>
+	</field>
+	<variable name="mycount" class="java.lang.Integer" resetType="Group" resetGroup="type" calculation="Count">
+		<variableExpression><![CDATA[$F{type}]]></variableExpression>
+	</variable>
+	<group name="type">
+		<groupExpression><![CDATA[$F{type}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="0" width="225" height="25" isPrintWhenDetailOverflows="true" uuid="52881dfe-b6db-4249-a18a-8b8054e0aacd"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[MY FIRST PAGE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="0" width="100" height="23" uuid="39057510-2fbb-4758-8104-82268225d624"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[LOG]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="a57ae12e-1e7f-4703-9750-7f1e2d23a84b"/>
+				<text><![CDATA[LOG TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="100" height="20" uuid="002c1995-6494-4acf-90b4-8a57abdcdb86"/>
+				<text><![CDATA[OLD VALUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="0" width="100" height="20" uuid="7c20bccc-c9b0-4bbc-bd69-55c650ee988b"/>
+				<text><![CDATA[NEW VALUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="2" width="100" height="20" uuid="af52dfef-01ad-4842-8141-95cb453b0f1e"/>
+				<text><![CDATA[LOG TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="2" width="100" height="20" uuid="033481c3-5c89-4507-8bf0-48309b09e706"/>
+				<text><![CDATA[OLD VALUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="2" width="100" height="20" uuid="1d311c69-f427-4a38-9da9-ee703b628047"/>
+				<text><![CDATA[NEW VALUE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="54" width="100" height="20" uuid="f4ce2632-f308-492b-a067-a8fde6d303ac"/>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="54" width="100" height="20" uuid="3b0a394a-5c17-4c55-9def-69d32890cef0"/>
+				<textFieldExpression><![CDATA[$F{oldval}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="54" width="100" height="20" uuid="b08d2e88-8fa7-4d5e-889f-372a309094bf"/>
+				<textFieldExpression><![CDATA[$F{newval}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

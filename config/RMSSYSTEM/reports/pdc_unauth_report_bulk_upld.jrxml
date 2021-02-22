@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pdc_unauth_report" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0df5ed99-ea42-464d-98c8-33b7a63fba1c">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="177"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="seller_id" class="java.lang.String"/>
+	<parameter name="printed_by" class="java.lang.String"/>
+	<parameter name="system_date" class="java.lang.String"/>
+	<parameter name="pdc_type" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+nptm_txn_master.pdc_req_financing ,
+ncd_cust_define_seller.cust_id as seller_cust_id,
+ncd_cust_define_seller.cust_name as seller_cust_name,
+ncd_cust_define_buyer.cust_id as buyer_cust_id,
+ncd_cust_define_buyer.cust_name as buyer_cust_name,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_bank_code,
+nptm_txn_master.pdc_branch_code,
+nptm_txn_master.pdc_booking_date,
+nptm_txn_master.pdc_value_date,
+nptm_txn_master.pdc_chq_number,
+nptm_txn_master.pdc_chq_amu,
+nptm_txn_master.pdc_chq_discounting_amu,
+nptm_txn_master.cust_account_number,
+concat(nbmf_branch_master.branch_name," | ",ngmmf_geo_market.geo_market_desc) as pdc_acc_officer_details,
+nptm_txn_master.pdc_chq_creat_by,
+nptm_txn_master.pdc_chq_creat_date,
+nptm_txn_master.pdc_chq_mod_by,
+nptm_txn_master.pdc_chq_mod_date
+FROM
+ndb_pdc_txn_master nptm_txn_master left join
+ndb_pdc_uploaded_customized_data npucd_customezed_cheque_data on
+nptm_txn_master.idndb_pdc_txn_master = npucd_customezed_cheque_data.idndb_pdc_txn_master inner join
+ndb_seller_has_buyers nshb_seller_has_buyers on
+nptm_txn_master.idndb_customer_define_buyer_id = nshb_seller_has_buyers.idndb_seller_has_buyers inner join
+ndb_cust_prod_map ncpm_cust_prod_map_seller on
+nshb_seller_has_buyers.idndb_customer_define_seller = ncpm_cust_prod_map_seller.idndb_cust_prod_map inner join
+ndb_cust_prod_map ncpm_cust_prod_map_buyer on
+nshb_seller_has_buyers.idndb_customer_define_buyer = ncpm_cust_prod_map_buyer.idndb_cust_prod_map inner join
+ndb_customer_define ncd_cust_define_seller on
+ncpm_cust_prod_map_seller.idndb_customer_define =ncd_cust_define_seller.idndb_customer_define inner join
+ndb_customer_define ncd_cust_define_buyer on
+ncpm_cust_prod_map_buyer.idndb_customer_define =ncd_cust_define_buyer.idndb_customer_define left join
+ndb_geo_market_master_file ngmmf_geo_market on
+ncd_cust_define_seller.idndb_geo_market_master_file = ngmmf_geo_market.idndb_geo_market_master_file left join
+ndb_branch_master_file nbmf_branch_master on
+ncd_cust_define_seller.idndb_branch_master_file = nbmf_branch_master.idndb_branch_master_file where
+nptm_txn_master.pdc_req_financing=$P{pdc_type} and
+nptm_txn_master.pdc_chq_status_auth='UN-AUTHORIZED' and
+nptm_txn_master.idndb_customer_define_seller_id = $P{seller_id} and
+nptm_txn_master.pdc_chq_batch_no not in ('*')  order by
+STR_TO_DATE(nptm_txn_master.pdc_value_date, '%d/%m/%Y')]]>
+	</queryString>
+	<field name="pdc_req_financing" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="seller_cust_id" class="java.lang.String"/>
+	<field name="seller_cust_name" class="java.lang.String"/>
+	<field name="buyer_cust_id" class="java.lang.String"/>
+	<field name="buyer_cust_name" class="java.lang.String"/>
+	<field name="pdc_chq_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_bank_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_branch_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_booking_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_value_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_discounting_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cust_account_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_acc_officer_details" class="java.lang.String"/>
+	<field name="pdc_chq_creat_by" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_creat_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_mod_by" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_mod_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="tot_chq_amu" class="java.lang.String"/>
+	<variable name="sum" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{pdc_chq_amu}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="8" width="676" height="47" forecolor="#FF0000" backcolor="#CC0000" uuid="b8b645e8-a974-4d1b-bebc-a157689b81c8"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="8" width="800" height="25" forecolor="#FFFFFF" uuid="c4602554-5076-4153-bd55-d421d91f4b7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NDB RMS SYSTEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="32" width="799" height="21" forecolor="#FFFFFF" uuid="c3b3c96c-6a3d-4718-82dc-6eb4a3737514"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="12"/>
+				</textElement>
+				<text><![CDATA[(UN-AUTHORIZED PDC DATA REPORT )]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="70" width="532" height="18" forecolor="#000000" uuid="26cd8976-1c18-4ee2-86f9-d64675ade01c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RMS SYSTEM DATE : "+$P{system_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="55" width="120" height="15" uuid="4212356d-feed-4e10-9710-a46bc72deb14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="9"/>
+				</textElement>
+				<text><![CDATA[PRINTED BY :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="71" width="120" height="15" uuid="6c35a9d5-47d4-448f-8194-3970444286cd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="9"/>
+				</textElement>
+				<text><![CDATA[PRINTED DATE & TIME :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="122" y="71" width="144" height="15" forecolor="#000000" uuid="a8ae2862-fbf3-47cf-8dae-3f372b618149"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="55" width="144" height="15" uuid="b20a6aed-5b28-46c5-8c22-06acc0b92d48"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{printed_by}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="728" y="88" width="74" height="18" backcolor="#666666" uuid="6cfa482a-5b98-45bc-a542-0c7bab4ff78c"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="88" width="727" height="18" forecolor="#B89F7D" backcolor="#000000" uuid="e2d6a110-fb74-40df-80f1-ba342c90d7be"/>
+			</frame>
+			<textField>
+				<reportElement x="3" y="88" width="220" height="18" forecolor="#FFFFFF" uuid="09b22533-6306-4dc9-a896-498ea40ac9e5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UN - AUTHORIZED "+$P{pdc_type}+" PDC DATA"]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="676" y="8" width="124" height="46" uuid="5ef079d5-2153-40d8-bbda-4377bcae2a98"/>
+				<imageExpression><![CDATA["D:\\reports\\NDB_BANK.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="799" y="7" width="1" height="47" forecolor="#FF0000" backcolor="#CC0000" uuid="8ac3d0f5-a2ab-4f19-a10f-853ef2d74968"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="390" y="3" width="57" height="16" forecolor="#000000" uuid="587f21d4-fa12-457f-9133-a67ee7e74e86"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CHQ. NUM"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="163" y="3" width="145" height="16" forecolor="#000000" uuid="d85cce76-405a-4928-bd25-d4710f5e32cf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SELLER NAME"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="540" y="3" width="100" height="16" forecolor="#000000" uuid="ac182ed9-fe8a-4ffc-a90c-fd4ec2def8d6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CHEQUE AMOUNT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="648" y="3" width="80" height="16" forecolor="#000000" uuid="0de283c8-4b8d-4479-86c3-ed184f7769bf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VALUE DATE"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="309" y="3" width="80" height="16" forecolor="#000000" uuid="e38cad0b-f3e4-4e98-8ff1-06bdc16fd45f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BUYER NAME"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="729" y="3" width="71" height="16" forecolor="#000000" uuid="7e617d4e-d8fc-444d-a908-0619b0aa1385"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INPUTTER"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="448" y="3" width="45" height="16" forecolor="#000000" uuid="0b1fa0e8-35cc-4ff2-b1d3-c80581452705"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BANK"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="494" y="3" width="45" height="16" forecolor="#000000" uuid="4f94791b-d8bd-4460-a03c-61ec53573487"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BRANCH"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="22" y="3" width="140" height="16" forecolor="#000000" uuid="7fa2192c-8644-4566-86c8-e734975f348b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BRANCH | ACC. OFFICER"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="5" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="-2" width="802" height="1" uuid="e842a673-4c34-4c2c-a0e5-579b9d83297d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="729" y="5" width="71" height="15" uuid="f346f24d-7224-4238-bdb2-e67592c2cca3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_chq_creat_by}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="390" y="5" width="57" height="15" uuid="41d4770b-9c6e-408e-8569-8029da6e8452"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_chq_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="5" width="145" height="15" uuid="a9bbf52f-0016-42af-ba80-7842f2150969"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seller_cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="5" width="45" height="15" uuid="1c1b36b3-39ff-446f-b9ec-2fc022d5b13f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_branch_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="5" width="45" height="15" uuid="b5f9e05f-d141-4563-92c1-0275a108b1d9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_bank_code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###.00">
+				<reportElement x="540" y="5" width="100" height="15" uuid="c97a7d0c-bde5-4d6a-9413-21c3754d5f4d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_chq_amu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="5" width="80" height="15" uuid="f683298b-8a82-4e52-997e-3155763120a9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{buyer_cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="648" y="5" width="80" height="15" uuid="acc717d7-ee13-4b72-8d9b-07340ffac1f1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_value_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="5" width="20" height="15" uuid="9d461a99-59f3-4707-825c-5655269c4f52"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="5" width="140" height="15" uuid="727103a7-be1a-4cb5-9c48-7a9fa4917cfa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_acc_officer_details}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="729" y="1" width="73" height="18" backcolor="#666666" uuid="05efdb4b-b7b6-452d-9017-756dc8bacd4e"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="729" height="18" forecolor="#B89F7D" backcolor="#000000" uuid="a9ab2ee3-245a-4e14-8158-a8feee561bd7"/>
+			</frame>
+			<textField evaluationTime="Page">
+				<reportElement x="729" y="1" width="70" height="18" forecolor="#FFFFFF" uuid="bbcdac9c-100e-4d47-856a-1e0d7a938ff7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="1" width="118" height="18" forecolor="#FFFFFF" uuid="0fb368ea-199c-4828-8a89-d3fc8138265f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calisto MT"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="433" y="5" width="106" height="15" uuid="e840d985-e016-47ad-a16d-636c5a184765"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Cheque Amount :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="540" y="5" width="100" height="15" uuid="a3ecbd12-041a-48e5-a26c-91390f7a5b71"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calisto MT" size="10" isBold="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="802" height="1" uuid="f2ad0e2e-a8c5-4c31-930f-51b22ebc4ffa"/>
+			</line>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="b9f30737-b678-48b4-9ed1-4851bc5891d1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

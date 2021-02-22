@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pinmailerconf" language="groovy" pageWidth="510" pageHeight="289" columnWidth="424" leftMargin="86" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d26ea668-2219-471a-9173-30585bf72b2c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="customer_mastid" class="java.lang.String"/>
+	<parameter name="password" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT customerid,customer_name,cusaddress1,cusaddress2,cusaddress3,cuscountry FROM customer_mast where customer_mastid = $P{customer_mastid}]]>
+	</queryString>
+	<field name="customerid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuscountry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="176" splitType="Stretch">
+			<textField>
+				<reportElement x="-19" y="125" width="144" height="15" uuid="ce3e54db-cbba-4709-a62f-749004b7e6b7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="140" width="101" height="15" uuid="88d958ba-ce7c-4bcf-9926-19c01893545a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{password}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-19" y="136" width="144" height="15" uuid="221155be-2a11-4b64-b25d-9c05f49bc29a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-19" y="107" width="144" height="15" uuid="cdb5b4f7-ce45-477b-833f-500a961f0fee"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-19" y="116" width="144" height="15" uuid="1eca8147-e34f-4cdc-9a8a-5c99190f22fa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-19" y="146" width="144" height="15" uuid="4037cd58-5694-4dc1-81b7-46f85d61ca27"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuscountry}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

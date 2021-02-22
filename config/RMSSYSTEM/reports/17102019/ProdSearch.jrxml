@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProdSearch" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9e705e3-42ea-4209-ad22-77ee61e6861b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ppro_cd" class="java.lang.String">
+		<defaultValueExpression><![CDATA["23030"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pdate" class="java.lang.String">
+		<defaultValueExpression><![CDATA["201401"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ptype" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pcondition" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{ptype}.equals("C")?" UP_DT_KY <= ":" UP_DT_KY = "]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT GL_CODE, PROD_KY, PROD_CD, PROD_DES, GL_CODE_p, SUM(INT_RECE) AS INT_RECE, SUM(TP_RECE) AS TP_RECE,
+SUM(INT_PAID) AS INT_PAID, SUM(TP_PAID) AS TP_PAID, SUM(NII_AMOUNT) AS NII_AMOUNT, SUM(FEE_AMT) AS FEE_AMT, SUM(FOREX_AMT) AS FOREX_AMT
+FROM vewCumilativeProdWise
+ WHERE (PROD_CD = $P{ppro_cd}) AND  $P!{pcondition} $P{pdate}
+ GROUP BY GL_CODE, PROD_KY, PROD_CD, PROD_DES, GL_CODE_P]]>
+	</queryString>
+	<field name="GL_CODE" class="java.lang.String"/>
+	<field name="PROD_KY" class="java.lang.String"/>
+	<field name="PROD_CD" class="java.lang.String"/>
+	<field name="PROD_DES" class="java.lang.String"/>
+	<field name="GL_CODE_p" class="java.lang.String"/>
+	<field name="INT_RECE" class="java.lang.Double"/>
+	<field name="TP_RECE" class="java.lang.Double"/>
+	<field name="INT_PAID" class="java.lang.Double"/>
+	<field name="TP_PAID" class="java.lang.Double"/>
+	<field name="NII_AMOUNT" class="java.lang.Double"/>
+	<field name="FEE_AMT" class="java.lang.Double"/>
+	<field name="FOREX_AMT" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="98" height="20" uuid="207bcb7d-1eca-44d3-b0db-4d100b213516"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="98" height="20" uuid="8494b7c4-3ac1-441b-bf51-2dd8beb873fa"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="0" width="557" height="20" uuid="983efa01-e073-41f3-a976-1897a052b762"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ptype}.equals("C")?"Product wise - Cumulative":
+"Product wise - For The Month"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="50" width="100" height="20" uuid="44223910-aaef-4afe-b673-5837971799bf"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="30" width="100" height="20" uuid="d6c9b34b-f8cc-417e-aa49-ad9ee8f4bdbb"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROD_DES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="455" y="30" width="100" height="20" uuid="3d5742ba-3c4e-4652-bce2-fe8b71f941f9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="76" height="20" uuid="1673d4ba-0ba9-47b3-8e2a-c275cbf96080"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GL_CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="0" width="80" height="20" uuid="85ff1d8f-1a9a-4caa-88a8-a460928fe74e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INT_RECD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="0" width="71" height="20" uuid="16381a2f-62a7-40da-9b58-f8066b9b113f"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TP_RECD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="0" width="77" height="20" uuid="a5c50ea7-1f6d-4ef9-aada-09e43380fc34"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INT_PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="0" width="63" height="20" uuid="8b2105f4-0fe3-4ff1-9edc-3e95f948e415"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TP_PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="63" height="20" uuid="7f981c2f-578a-4e6c-8bcd-4acf12f29b21"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NII]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="62" height="20" uuid="757ebc01-7343-4855-a1ed-e0cb8f30ebff"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="493" y="0" width="62" height="20" uuid="dc177850-eb2d-4cbf-a3ca-7177da01da14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOREX]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1" y="0" width="76" height="20" uuid="20afa835-4668-42fa-8b63-f2311a47bc06"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GL_CODE_p}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="77" y="0" width="80" height="20" uuid="83a78c7b-8575-4973-ac2a-396a80890162"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INT_RECE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="157" y="0" width="71" height="20" uuid="a3331b08-ffa2-4cf7-8117-3653d5ebc485"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TP_RECE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="228" y="0" width="77" height="20" uuid="22d94f28-db6f-4cbf-b05d-ee16c0b0d566"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INT_PAID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="305" y="0" width="63" height="20" uuid="f805f2bb-116b-4120-8a86-4d3fbe0cc55a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TP_PAID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="368" y="0" width="63" height="20" uuid="e530f4b5-b1d4-4f62-966a-aa3939ac328b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NII_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="431" y="0" width="62" height="20" uuid="d204c8f0-1eda-4f46-8e29-f35a5a4f4ce8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FEE_AMT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="493" y="2" width="62" height="20" uuid="6f233c30-9a66-49b7-89ce-3104e8b272f0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FOREX_AMT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

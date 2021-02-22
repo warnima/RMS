@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dev_team_view" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ae914d9-cd5b-4e90-abfc-0bfb24516faa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     user_mast.`user_id` AS user_mast_user_id,
+     user_mast.`user_name` AS user_mast_user_name,
+     user_mast.`user_status` AS user_mast_user_status,
+     user_mast.`pro_workplcid` AS user_mast_pro_workplcid,
+     user_mast.`user_desig` AS user_mast_user_desig,
+     assinged_projects_master.`idassinged_projects_master` AS assinged_projects_master_idassinged_projects_master,
+     assinged_projects_master.`user_id` AS assinged_projects_master_user_id,
+     assinged_projects_master.`pro_type_id` AS assinged_projects_master_pro_type_id,
+     assinged_projects_master.`pro_refnum` AS assinged_projects_master_pro_refnum,
+     assinged_projects_master.`pro_requester` AS assinged_projects_master_pro_requester,
+     assinged_projects_master.`pro_desc` AS assinged_projects_master_pro_desc,
+     assinged_projects_master.`pro_devrecdate` AS assinged_projects_master_pro_devrecdate,
+     assinged_projects_master.`status` AS assinged_projects_master_status,
+
+CASE WHEN assinged_projects_master.status in ('Requirement Analysis','BRP In Progress','BRP Approvel','Development In Progress','Initial Testing Issue Fixing','QA Rejected Issue Fixing','Current Asignment','Development Hold') then 'Current Asignment'
+WHEN assinged_projects_master.status in ('Line Up') then 'Line Up Assignment'
+Else  'N/A'
+end as current
+
+
+FROM
+     `assinged_projects_master` assinged_projects_master INNER JOIN `user_mast` user_mast ON assinged_projects_master.`user_id` = user_mast.`user_id`
+     AND user_mast.`user_id` = assinged_projects_master.`user_id`
+WHERE
+     user_mast.pro_workplcid = 'Development Team'
+ AND user_mast.user_status = '1'
+ AND status IN ('Requirement Analysis','BRP In Progress','BRP Approvel','Development In Progress','Initial Testing Issue Fixing','QA Rejected Issue Fixing','Current Asignment','Line Up','Development Hold') ORDER BY user_mast.user_name ASC]]>
+	</queryString>
+	<field name="user_mast_user_id" class="java.lang.String"/>
+	<field name="user_mast_user_name" class="java.lang.String"/>
+	<field name="user_mast_user_status" class="java.lang.String"/>
+	<field name="user_mast_pro_workplcid" class="java.lang.String"/>
+	<field name="user_mast_user_desig" class="java.lang.String"/>
+	<field name="assinged_projects_master_idassinged_projects_master" class="java.lang.Integer"/>
+	<field name="assinged_projects_master_user_id" class="java.lang.String"/>
+	<field name="assinged_projects_master_pro_type_id" class="java.lang.String"/>
+	<field name="assinged_projects_master_pro_refnum" class="java.lang.String"/>
+	<field name="assinged_projects_master_pro_requester" class="java.lang.String"/>
+	<field name="assinged_projects_master_pro_desc" class="java.lang.String"/>
+	<field name="assinged_projects_master_pro_devrecdate" class="java.sql.Timestamp"/>
+	<field name="assinged_projects_master_status" class="java.lang.String"/>
+	<field name="current" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="553" height="42" backcolor="#CCCCCC" uuid="7ac955ce-0ab5-402e-a312-00bc9cbffa90"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd h.mm a">
+				<reportElement x="34" y="12" width="104" height="20" uuid="abd5ab7c-22c7-4557-8d3e-60033fcb3349"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="12" width="24" height="20" uuid="3f7713b5-4b5d-47fd-8705-7923f97853e4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<image>
+				<reportElement x="436" y="7" width="111" height="28" uuid="abece340-b075-4b2e-abdc-df952e358939"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="112" y="47" width="251" height="27" uuid="dc068e53-7ed5-4ddf-ae2f-816f9a650eee"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DEVELOPMENT TEAM VIEW AS AT]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="361" y="47" width="104" height="20" uuid="3ff28b20-f81e-436c-b4a5-57d557f62e6f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="5" width="55" height="20" uuid="f2b0beb3-b3de-4b1b-a833-d27d3f453763"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Developer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="5" width="84" height="20" uuid="47e4a724-ab3a-4df2-b0ba-6ab44496397d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="5" width="72" height="20" uuid="5a7c70fc-f2e7-405b-bc65-888122f81465"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Ref Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="5" width="98" height="20" uuid="bf111943-b42b-4652-b245-3b4d933a4e02"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="5" width="93" height="20" uuid="bb4c822f-b898-45ff-a257-2cc33b6c5ef2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="4" width="82" height="20" uuid="b770feef-2d46-4653-b07f-7df45388cf9b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user_mast_user_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="4" width="82" height="20" uuid="51064950-1166-4878-9831-43e0b999327d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user_mast_user_desig}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="4" width="71" height="20" uuid="93b14993-f69f-494c-904d-24c2529c0fa0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assinged_projects_master_pro_refnum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="4" width="124" height="20" uuid="2aaa1604-7799-47f6-b023-19ec00f69f2a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assinged_projects_master_pro_desc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="5" width="100" height="20" uuid="1473fb99-875f-4c85-9b8c-7254a297c236"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assinged_projects_master_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="5" width="67" height="20" uuid="bd4365e8-0e7a-4e5a-8a35-aeac3313cae7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{current}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="1" width="553" height="44" backcolor="#CCCCCC" uuid="27de442a-34fa-4615-8c86-c2a00ccef813"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="14" width="25" height="20" uuid="1374c58a-02e9-40fe-89e2-a03a5cbdc79b"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+			<textField evaluationTime="Page">
+				<reportElement x="253" y="14" width="27" height="20" uuid="27414843-3192-4a0f-87b8-a1b64ef5228c"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="296" y="14" width="100" height="20" uuid="bc4ecd7c-5578-4954-bd80-d3f0d0ae32f0"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="14" width="25" height="20" uuid="6941f52c-b27f-48d1-ade2-cf206e88b428"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

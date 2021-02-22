@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pinmailer" language="groovy" pageWidth="510" pageHeight="289" columnWidth="369" leftMargin="99" rightMargin="42" topMargin="70" bottomMargin="0" uuid="571bcf51-3c3d-436d-8f21-1dbf3ea547d2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="customer_mastid" class="java.lang.String"/>
+	<parameter name="password" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT customerid,customer_name,cusaddress1,cusaddress2,cusaddress3,cuscountry FROM customer_mast where customer_mastid = $P{customer_mastid}]]>
+	</queryString>
+	<field name="customerid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuscountry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="126" splitType="Stretch">
+			<textField>
+				<reportElement x="183" y="33" width="144" height="15" uuid="1be68c9a-af92-4f01-affa-a803c963b291"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="44" width="144" height="15" uuid="7b1cc5d2-3928-4e78-bbdc-1162cb1472b6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="23" width="144" height="15" uuid="9749d4a2-27b1-4580-8e5a-307b5f6f2d09"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="65" width="144" height="15" uuid="0f72d992-074a-4519-a9f9-ad577f460e23"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cusaddress3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="54" width="144" height="15" uuid="3d0fb383-dd02-44a1-98e5-f45f9ed7b463"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuscountry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-10" y="48" width="112" height="20" uuid="964fa3f9-a264-4e2e-865f-f440ba1608e3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{password}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="1" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PDC Physical Verification Confirmation report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c550a0d3-9686-4f98-9f63-2d4ebd455bfb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="REPORT_VERFY_DATE" class="java.lang.String"/>
+	<parameter name="REPORT_PORTFOIO_CHQ_CNT" class="java.lang.String"/>
+	<parameter name="REPORT_PORTFOIO_CHQ_AMNT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT NOW(),CURDATE(),CURTIME()]]>
+	</queryString>
+	<field name="NOW()" class="java.sql.Timestamp"/>
+	<field name="CURDATE()" class="java.sql.Date"/>
+	<field name="CURTIME()" class="java.sql.Time"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="184" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="66" width="555" height="25" uuid="68d608b1-61b2-408a-8374-5ff5fbc33827"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PDC Physical Verification Confirmation report]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="131" width="327" height="20" uuid="dd9185f2-113a-42e8-a57f-3a0aadb78b6b"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PORTFOIO_CHQ_CNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="114" width="65" height="17" uuid="1bc1495d-041f-4309-8f51-018439101f57"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_VERFY_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="162" y="152" width="327" height="20" uuid="f6be3a85-0740-4639-8828-d4284786a31f"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_PORTFOIO_CHQ_AMNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="1" width="553" height="31" forecolor="#CC0033" backcolor="#FF0000" uuid="65f47be2-43a2-440d-bb47-d9610ee2e9d2"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="5" width="118" height="22" uuid="420d2daf-1cb3-4a3c-9784-e1a955d05e34"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="2" y="5" width="553" height="26" uuid="a3200367-daeb-43bf-92fb-b2993d99c32c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="95" width="327" height="20" uuid="6dbfdb1d-5a88-4f41-a3ff-53b7d74bacfe"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_VERFY_DATE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="182" width="555" height="1" uuid="76eff29f-1275-4f2f-b17c-acdca04349c1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="37" width="553" height="26" uuid="19b666b1-ddb4-4788-a2f4-518ffd751f92"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Receivable Management System (RMS)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="-69" width="160" height="18" uuid="c8fefe19-777d-47b2-9b48-d6a38b24060a"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Portfolio Balance as at :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="-31" width="160" height="18" uuid="16142704-446f-48a5-823f-93f88b9215b9"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cheque Amount :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="-50" width="160" height="18" uuid="f2e27a6b-874b-4113-b825-284221dd478b"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No of Cheques : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="-88" width="160" height="18" uuid="6ee90dc7-608f-40fe-9900-c199f16c2cf8"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Physical Verification Date :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="135" splitType="Stretch">
+			<subreport>
+				<reportElement x="-2" y="3" width="542" height="128" uuid="23ad5bce-b3dc-4476-92ee-c36a52aaddde"/>
+				<subreportParameter name="REPORT_VERFY_DATE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_VERFY_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PDC Physical Verification Confirmationverified cheque details  subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="150">
+			<subreport>
+				<reportElement x="0" y="0" width="539" height="146" uuid="2c066efa-46fc-4dac-9254-8310908b5e52"/>
+				<subreportParameter name="REPORT_VERFY_DATE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_VERFY_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PDC Physical Verification Confirmation subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="340" y="4" width="100" height="20" uuid="11ad3299-e150-41b6-a8ca-be20ab6f7144"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Page No :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="4" width="100" height="20" uuid="c6c1062f-8caf-421b-9408-3af70f4286f7"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="162" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="14" width="298" height="18" uuid="1b83bb54-af9a-4a46-81d5-bc56b4acaaf5"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Confirm the Accuracy of PDC Physical Verification held on]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="303" y="14" width="204" height="18" uuid="2a33f51c-8d4d-4a84-b0a4-37286542c187"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_VERFY_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="88" width="118" height="18" uuid="2117966d-1dd3-43ff-b909-ad53c512b39f"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="87" width="118" height="18" uuid="2d424fbd-8d05-4262-a370-f4f9ea89b152"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="48" width="118" height="18" uuid="274df966-1c5b-42c9-a8ed-1b2bb6eac658"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[............................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="48" width="118" height="18" uuid="8baa2310-bcd1-46aa-8d4f-602cf0a534b8"/>
+				<textElement>
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[..........................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="111" width="553" height="31" forecolor="#CC0033" backcolor="#FF0000" uuid="25db48ce-dfb1-4d34-902e-a8c1365923ab"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="116" width="118" height="22" uuid="49611135-5a13-4d9e-ad37-92df72163681"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogo.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="3" width="555" height="1" uuid="641c3759-be51-477a-8437-d61ecec5407c"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

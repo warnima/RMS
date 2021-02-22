@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PinData" language="groovy" pageWidth="510" pageHeight="1156" orientation="Landscape" whenNoDataType="BlankPage" columnWidth="426" leftMargin="42" rightMargin="42" topMargin="0" bottomMargin="0" uuid="e25dfc31-1ba2-4ca6-80e3-a555e7094978">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT customerid,customer_name,cusaddress1,cusaddress2,cusaddress3,cuscountry FROM customer_mast]]>
+	</queryString>
+	<field name="customerid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cusaddress3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuscountry" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="600" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="18" width="100" height="15" uuid="d3fc8f14-0cdb-4adb-b841-55b441c62119"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cusaddress1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="33" width="100" height="15" uuid="7456a9fd-b0d3-4305-a726-81a10f013512"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cusaddress2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="48" width="100" height="15" uuid="b40f058d-d499-4254-9af5-ca7e5ba93e0d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cusaddress3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="63" width="100" height="15" uuid="94b0bbbf-7d68-47ed-9b2f-3d4d5b5750c1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuscountry}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="18" width="100" height="15" uuid="f6c60a0f-366a-4388-983a-74ac5f231dd2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{customerid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

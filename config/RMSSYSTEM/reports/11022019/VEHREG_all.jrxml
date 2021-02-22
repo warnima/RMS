@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VEHREG_all" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6159954-5afa-4b80-ad69-bdc9fa27558c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="clientname" class="java.lang.String"/>
+	<parameter name="vehicalnum" class="java.lang.String"/>
+	<parameter name="bookserialnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select safe_custody_no, vehicle_no,book_serial_no,client_name,notes,b.status_desc,date_received,date_withdrawn from
+vehiclemaster a left outer join status_master b
+on a.status_code=b.status_code where  client_name = $P{clientname} or vehicle_no =$P{vehicalnum} or book_serial_no = $P{bookserialnum}]]>
+	</queryString>
+	<field name="safe_custody_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="book_serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_received" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_withdrawn" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="166" y="45" width="205" height="26" uuid="b5b8ddac-dac7-4393-9882-ef00558e2c30"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Registration Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="71" width="39" height="19" uuid="488ea02e-c8f2-456c-9c72-6ace44f17be8"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="446" y="71" width="97" height="20" uuid="405152d3-28d2-437a-9b59-5260aa856be4"/>
+				<textElement>
+					<font fontName="Traditional Arabic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="170" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f3563e8d-644f-455b-bf96-b0fc8db08a6d"/>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="44" backcolor="#CCCCCC" uuid="867a7eae-76ae-4eca-99ff-cf4b333f8d95"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="242" y="10" width="100" height="20" uuid="272b2978-a38e-4093-be58-81c166a493cd"/>
+				<textElement>
+					<font fontName="Traditional Arabic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="215" y="10" width="27" height="20" uuid="eee457a9-be82-48a3-b7be-b077a74fab8b"/>
+				<textElement>
+					<font fontName="Traditional Arabic"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

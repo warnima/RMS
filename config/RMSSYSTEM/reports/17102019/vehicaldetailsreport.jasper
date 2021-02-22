@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bdda92be-8017-4dac-b364-c836692181d9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="clientname" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vehicalnum" class="java.lang.String"/>
+	<parameter name="bookserialnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select safe_custody_no, vehicle_no,book_serial_no,client_name,notes,b.status_desc from
+vehiclemaster a left outer join status_master b
+on a.status_code=b.status_code where  client_name  like '%$P!{clientname}%' and vehicle_no  like '%$P!{vehicalnum}%' and book_serial_no  like '%$P!{bookserialnum}%']]>
+	</queryString>
+	<field name="safe_custody_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="book_serial_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_desc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="555" height="20" uuid="35749dc5-790e-471d-8982-e68a6d3f1541"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehical Registration Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="23" width="26" height="20" uuid="799d81d2-df25-46bc-a948-d14b3ac24a88"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="23" width="110" height="20" uuid="facd74f7-35d5-4ba4-9260-6d62030b23b4"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[new java.util.Date()]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="0" width="81" height="20" uuid="53473af0-9b17-433c-8b28-413b88d61212"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehical NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="0" width="81" height="20" uuid="f036a7c9-40b1-446b-8555-8d2928a54b6a"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Book Serial NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="3" width="107" height="20" uuid="57f8bfa0-7265-4a20-922c-854a18554709"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Safe Custody NO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="241" height="20" uuid="24a6ea5d-f22e-4acd-b790-7c2c573eaebd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client Name]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="3" width="98" height="20" uuid="28f02973-85b3-4350-b698-1189a50b480a"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vehicle_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="3" width="100" height="20" uuid="06c7987d-47a3-43a7-945d-87c5c15b5700"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_serial_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="3" width="107" height="20" uuid="c0068b3f-a84b-4c84-905d-e2cef3e2f70e"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{safe_custody_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="3" width="241" height="20" uuid="5c463da2-96d2-4c3e-9545-e907a4ac9a51"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

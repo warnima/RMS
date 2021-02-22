@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HelpdeskJobsSummery" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="357d6ac9-9d0a-47ad-b20e-919769dfb390">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="8113d765-c2ab-406b-b77e-f73f219fcf98">
+		<parameter name="ISSUE_ID" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT comment, user_comment , done_user , concat(date,' ',time) as commented_date_time FROM ndb1.comment_mast where issue_id=$P{ISSUE_ID}]]>
+		</queryString>
+		<field name="comment" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="user_comment" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="done_user" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="commented_date_time" class="java.lang.String"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+ndb_issue_mast.issueId as issue_id,
+ndb_issue_mast.username as user_name,
+ndb_act_locations.lname as bracnh_department,
+ndb_issue_mast.contactNo as contact_number,
+ndb_issue_mast.startdate as date,
+(
+CASE
+ WHEN ndb_issue_mast.status ='3' THEN 'Completed'
+ WHEN ndb_issue_mast.status ='5' THEN 'Reassigned'
+ ELSE 'Pending'
+ END
+ ) as job_status,
+ndb_issue_mast.natureofProblem,
+ndb_issue_mast.descriptionofProblem,
+(
+CASE
+ WHEN ndb_pre_locations.lname='NA' THEN 'Not Assigned'
+ ELSE ndb_pre_locations.lname
+END
+) as presentLocation,
+ndb_issue_mast.userlocation,
+ndb_enginer_mast.username as engineer_name,
+ndb_issue_mast.jobCategory,
+ndb_issue_mast.donetime as completed_date_time
+FROM
+issue_mast ndb_issue_mast left join
+location ndb_act_locations on
+ndb_issue_mast.actualLocation =ndb_act_locations.LID left join
+location ndb_pre_locations on
+ndb_issue_mast.presentLocation =ndb_pre_locations.LID left join
+engineer_mast ndb_enginer_mast on
+ndb_issue_mast.EID = ndb_enginer_mast.eng_id
+
+WHERE startdate >= '2018/08/01' AND startdate <= '2018/08/30']]>
+	</queryString>
+	<field name="issue_id" class="java.lang.Long"/>
+	<field name="user_name" class="java.lang.String"/>
+	<field name="bracnh_department" class="java.lang.String"/>
+	<field name="contact_number" class="java.lang.String"/>
+	<field name="date" class="java.lang.String"/>
+	<field name="job_status" class="java.lang.String"/>
+	<field name="natureofProblem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descriptionofProblem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="presentLocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="userlocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="engineer_name" class="java.lang.String"/>
+	<field name="jobCategory" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="completed_date_time" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="801" height="47" forecolor="#000000" backcolor="#FF0033" uuid="cd2b299d-dca9-4f4f-b162-4eb99acfc4ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement mode="Opaque" x="687" y="0" width="114" height="47" backcolor="#FFFFFF" uuid="4fdbb493-cb38-4b41-bd15-a8616d1fc1f5"/>
+				<imageExpression><![CDATA["D:\\NDB_LOGO\\NDB_BANK.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="47" forecolor="#FFFFFF" uuid="eff7af0a-6d25-402c-9145-2f1b1745aae0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[National Development Bank PLC]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="0" width="796" height="35" backcolor="#CCCCCC" uuid="a013b602-e669-40eb-8e09-472bc2b3e242"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Helpdesk Jobs Summery Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="801" height="24" backcolor="#CCCCCC" uuid="cc3fd217-d7ba-47c3-abaf-878106ebfde3"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="1" width="42" height="20" uuid="96f556f0-fc82-47b9-8ef5-21a7b6499a00"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Issue ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="0" width="135" height="20" uuid="56bcdfb2-2776-4947-8eb1-7a6fe3827cdc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[User Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="0" width="66" height="20" uuid="5f8c8229-64e2-4b09-98cb-702cd042d1ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Branch/Dept.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="1" width="52" height="20" uuid="9c3f7b9b-8cf0-4343-a0a6-c7a7f77238f8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="98" height="20" uuid="5756ed37-6bba-4ed7-84fe-c6c0f4280025"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nature of Problem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="86" height="20" uuid="e4dceb2b-c252-4473-8fd3-400495206048"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="747" y="1" width="55" height="20" uuid="f17f8218-d1f5-436b-bba2-0eb7cf4ae367"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="0" width="66" height="20" uuid="ddc87754-4c0b-4414-8dbd-5eb968becf8e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Job Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="66" height="20" uuid="e16561ee-ae72-41bb-99b0-07639b092d44"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contact No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="624" y="1" width="120" height="20" uuid="c4d1e499-a8d5-4ff5-b371-d51dd5d32c1a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attended By]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="42" height="20" uuid="9b1c0994-0852-44f4-8a6c-0708c97b7f35"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{issue_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="4" width="51" height="20" uuid="dfea0bd1-1e4c-479f-b0c5-c167bd9ee443"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="4" width="135" height="20" uuid="9939e4fd-cd61-4906-9a29-14b06207cb16"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="4" width="66" height="20" uuid="9c86eef3-4e0e-434a-a7da-4f4626426667"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bracnh_department}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="4" width="66" height="20" uuid="cd983fa0-3880-4cff-93c4-a624db1e925e"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contact_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="4" width="98" height="20" uuid="c98e5d00-019a-48ee-9565-78ad17b847ff"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{natureofProblem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="4" width="86" height="20" uuid="ef0d373d-c46f-495b-89a9-dc1e652b074b"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descriptionofProblem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="557" y="4" width="66" height="20" uuid="d9c2c488-b150-4b5d-88ef-fbc26b4c36db"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jobCategory}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="745" y="4" width="55" height="20" uuid="1ca2d712-e685-41bd-bc06-95b9998b1576"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="624" y="4" width="120" height="20" uuid="c4c05c8a-9b4a-4b94-8f4b-65e1bc26e0e0"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{engineer_name}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="298" y="27" width="446" height="35" uuid="4543373f-b6f3-45d1-a36b-1f7de8305c8a"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="7b645c02-d954-4701-a508-f337cd78d2ce">
+						<datasetParameter name="ISSUE_ID">
+							<datasetParameterExpression><![CDATA[$F{issue_id}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="138" uuid="d4c3aaa0-3f5f-42eb-9cf2-8d443bd94549">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="138" height="20" uuid="2272bbd4-2c6d-40de-8cb6-02f5becc5be0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Courier New" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Action]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="138" height="20" uuid="7129e7f1-56b2-4cf2-b781-91209aa427e3"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Courier New" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{comment}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="159" uuid="be2e4c69-fe02-48eb-b094-63f4251697f1">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="159" height="20" uuid="becd2bbe-821f-4e45-8536-0ec8cdbb9ac4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Courier New" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[User Comment]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="159" height="20" uuid="7c9db22d-9129-4ef6-9857-1aa5c95aa549"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Courier New" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{user_comment}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="92" uuid="a9684ccb-4feb-4c53-b59e-f40a8a2e4019">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="2" y="0" width="90" height="20" uuid="02cd833f-c848-4d13-a38b-667a157ea822"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Courier New" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Comment By]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="1773f9f5-1189-416d-a2c5-4976768fcc26"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Courier New" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{done_user}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="113" uuid="57a9bf69-6aac-4b25-9cf8-f24c412fec06">
+						<jr:columnHeader style="table 1_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="113" height="20" uuid="e005717b-84c1-4e2a-aff1-7ab67492df29"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Courier New" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cooment Date % Time]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="113" height="20" uuid="6370eac6-a753-414c-8167-6e78de30a6a2"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Courier New" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{commented_date_time}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="576" y="0" width="178" height="20" uuid="70cafb57-bff5-4bc7-9a35-aa69b4c23bce"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="804" height="20" forecolor="#000000" backcolor="#CCCCCC" uuid="8a7d21f0-4a70-4a2e-9a1e-1deb5223e7ec"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="751" y="1" width="48" height="19" uuid="87de93e6-8fff-4cc1-aed5-2fabd7f9168a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="574" y="0" width="178" height="20" uuid="7896c210-7eab-432c-b14f-53edb44283a1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="89" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="21" width="802" height="1" uuid="115dfcad-a06b-4c90-88d1-bd595797914b"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="1" width="802" height="20" uuid="264503a8-737b-40f9-b8f0-689697bd2539"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- End Of The Report -]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="-108" width="802" height="1" uuid="be618037-102c-45df-b006-5c3e397603aa"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

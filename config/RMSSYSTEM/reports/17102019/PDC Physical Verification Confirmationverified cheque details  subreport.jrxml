@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PDC Physical Verification Confirmationverified cheque details  subreport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f2372c61-b294-4114-bb3d-ce621cdd8ca9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REPORT_VERFY_DATE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+
+count(npcv.idndb_pdc_txn_master) as chq_count,
+npcv.pdc_verify_user,
+SUM(nptm.pdc_chq_amu) as total_chq_amount
+
+from
+
+ndb_pdc_chq_verification npcv,
+ndb_pdc_txn_master nptm
+
+
+where npcv.pdc_verify_date=$P{REPORT_VERFY_DATE}
+and nptm.idndb_pdc_txn_master =npcv.idndb_pdc_txn_master
+group by npcv.pdc_verify_user]]>
+	</queryString>
+	<field name="chq_count" class="java.lang.Long"/>
+	<field name="pdc_verify_user" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_chq_amount" class="java.lang.Double"/>
+	<variable name="PDC_VERIFIED_CHQ_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_chq_amount}]]></variableExpression>
+	</variable>
+	<variable name="PDC_VERIFIED_CHQ_COUNT" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{chq_count}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="0" width="555" height="25" uuid="18764d00-8380-46ce-9514-ec9713086260"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Physical Verification Summary]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="290" y="3" width="138" height="18" uuid="dbab46f6-d73b-4caf-8749-d88d87c5535c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="3" width="125" height="18" uuid="6a96dd40-532b-4964-aa0d-21dbe83eeb9a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="2" width="136" height="18" uuid="d02e50b1-ce71-4f4b-a9dd-0616e7b15f51"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[User Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="2" width="119" height="18" uuid="026b6a6b-41c3-4f8f-9e78-6db3807325fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[No of Cheques Verified]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="4" width="136" height="16" uuid="75471064-70d3-484a-a2a5-f037892b0ec1"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_verify_user}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="4" width="119" height="16" uuid="6b070eb8-d8bc-42d7-9e14-9796444647f1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chq_count}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="290" y="4" width="128" height="16" uuid="5e78f256-8aa0-4049-81f5-cdfd98278c74"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_chq_amount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="438" y="13" width="119" height="1" uuid="2e5fd397-2d6a-44db-aea8-d47316dc5bf9"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="3" y="4" width="32" height="16" uuid="623396fa-f455-4272-800c-868707a72768"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="40">
+			<textField pattern="#,##0.00">
+				<reportElement x="290" y="7" width="128" height="20" uuid="a25463f2-2892-4a8f-a18e-41a1c997ceee"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PDC_VERIFIED_CHQ_SUM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="37" y="7" width="134" height="20" uuid="198bbd89-6e8e-4280-b66c-4233f8900034"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[Verified Cheques Total Amount]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="171" y="7" width="119" height="20" uuid="5c8a5ae1-da18-4462-809c-58f673c8209b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PDC_VERIFIED_CHQ_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="171" y="2" width="257" height="2" uuid="3bbe7ced-daa6-4bfa-bb2a-3fe5d3e8fb55"/>
+			</line>
+			<line>
+				<reportElement x="171" y="30" width="257" height="2" uuid="8eb71d59-2226-44c9-accd-7ddd976a14d8"/>
+			</line>
+			<line>
+				<reportElement x="171" y="33" width="257" height="2" uuid="2d799c22-5f72-4ea2-8a7e-534a9bd71bd5"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

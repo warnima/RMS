@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PDC Physical Verification Confirmation subreport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63043631-c721-47d8-b07a-f3cbe4c20765">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REPORT_VERFY_DATE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+ncd.cust_name as seller_name,
+ncd1.cust_name as buyer_name,
+nptm.pdc_chq_number,
+nptm.pdc_chq_amu,
+nptm.pdc_bank_code,
+nptm.pdc_branch_code,
+nptm.pdc_value_date
+from
+ndb_pdc_txn_master nptm,
+ndb_seller_has_buyers nshb,
+ndb_cust_prod_map ncpm,
+ndb_cust_prod_map ncpm1,
+ndb_customer_define ncd,
+ndb_customer_define ncd1
+
+where
+
+(nptm.idndb_pdc_txn_master not in (select idndb_pdc_txn_master from ndb_pdc_chq_verification where pdc_verify_date=$P{REPORT_VERFY_DATE})) and STR_TO_DATE(nptm.pdc_value_date, '%d/%m/%Y') >= STR_TO_DATE($P{REPORT_VERFY_DATE}, '%d/%m/%Y') and
+nptm.idndb_customer_define_buyer_id =nshb.idndb_seller_has_buyers and
+ncpm.idndb_cust_prod_map=nshb.idndb_customer_define_seller and
+ncpm1.idndb_cust_prod_map=nshb.idndb_customer_define_buyer and
+ncd.idndb_customer_define=ncpm.idndb_customer_define and
+ncd1.idndb_customer_define=ncpm1.idndb_customer_define and
+nptm.pdc_chq_status = 'ACTIVE' and nptm.pdc_chq_status_auth = 'AUTHORIZED']]>
+	</queryString>
+	<field name="seller_name" class="java.lang.String"/>
+	<field name="buyer_name" class="java.lang.String"/>
+	<field name="pdc_chq_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_bank_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_branch_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_value_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="PDC_NOTVERIED_CHQ_COUNT" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{pdc_chq_amu}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="2" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="25" uuid="7f5bb3f7-1c7c-445b-af21-a7d8201d2992"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Not Verified Cheque details ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="4" width="115" height="18" uuid="4326e267-0846-4919-a154-81c549019f7c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Seller Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="4" width="84" height="18" uuid="ba58a10b-e480-44dd-86f1-075edc047034"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Value Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="4" width="70" height="18" uuid="e83b4fb2-057e-4aef-ae24-33388319be16"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Cheque No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="4" width="100" height="18" uuid="4147e76b-f191-4dad-bbc0-92d21f1002ca"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="4" width="64" height="18" uuid="c3847eaa-fc80-4eb7-a9a7-8ae46f658ad3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Bank Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="4" width="64" height="18" uuid="4990a652-e1ed-4a05-88f6-4aa623060eb4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Branch Code]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="1" width="115" height="20" uuid="2f376c19-23b3-4e97-a57c-3470a928cfd4"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seller_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="1" width="70" height="20" uuid="ad2e8b91-927c-42ee-b459-dcd25ed95358"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_chq_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="1" width="64" height="20" uuid="dbda395e-b4e3-4ffc-9b71-d3eb25139f25"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_bank_code}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="427" y="1" width="100" height="20" uuid="bcd1a4f3-4beb-4331-a482-8939e275b562"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_chq_amu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="28" height="17" uuid="170d1a15-a714-4f83-b8cd-8a37f8523558"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="1" width="64" height="20" uuid="757ffabc-1b8a-4e58-8715-e11e0a5ab372"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_branch_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="1" width="84" height="20" uuid="19214bb1-0b77-4ebc-bbc1-3f3699e2a024"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pdc_value_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="46">
+			<staticText>
+				<reportElement x="225" y="4" width="194" height="20" uuid="95181297-864b-4aba-bcef-c61914f0804d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[Not Verified Cheques Total Amount]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="427" y="4" width="100" height="15" uuid="78acc200-344e-4cde-bb5b-65091fe5b5e8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PDC_NOTVERIED_CHQ_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="428" y="2" width="100" height="1" uuid="657e261e-e064-4b4a-8691-cf39bf2fe25d"/>
+			</line>
+			<line>
+				<reportElement x="427" y="20" width="100" height="1" uuid="aec85c08-da5f-43e3-9777-157c4e27f75b"/>
+			</line>
+			<line>
+				<reportElement x="427" y="23" width="100" height="1" uuid="afb2ba46-e4dc-461e-933a-d49659d4b91e"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPA" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44aac17c-fc3d-40eb-a3fb-a9569be09652">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     gefu_file_generation.`idgefu_file_generation` AS gefu_file_generation_idgefu_file_generation,
+     gefu_file_generation.`idndb_pdc_txn_master` AS gefu_file_generation_idndb_pdc_txn_master,
+     ndb_pdc_txn_master.`idndb_pdc_txn_master` AS ndb_pdc_txn_master_idndb_pdc_txn_master,
+     ndb_pdc_txn_master.`pdc_req_financing` AS ndb_pdc_txn_master_pdc_req_financing,
+     ndb_pdc_txn_master.`idndb_customer_define_seller_id` AS ndb_pdc_txn_master_idndb_customer_define_seller_id,
+     ndb_pdc_txn_master.`idndb_customer_define_buyer_id` AS ndb_pdc_txn_master_idndb_customer_define_buyer_id,
+     ndb_cust_prod_map.`idndb_cust_prod_map` AS ndb_cust_prod_map_idndb_cust_prod_map,
+     ndb_cust_prod_map.`idndb_customer_define` AS ndb_cust_prod_map_idndb_customer_define,
+     ndb_cust_prod_map.`prod_relationship_key_seller` AS ndb_cust_prod_map_prod_relationship_key_seller,
+     ndb_cust_prod_map.`prod_relationship_key_buyer` AS ndb_cust_prod_map_prod_relationship_key_buyer,
+     ndb_cust_prod_map.`prod_relationship_status` AS ndb_cust_prod_map_prod_relationship_status,
+     ndb_cust_prod_map.`prod_relationship_auth` AS ndb_cust_prod_map_prod_relationship_auth,
+     ndb_cust_prod_map.`prod_relationship_res_fin` AS ndb_cust_prod_map_prod_relationship_res_fin,
+     ndb_cust_prod_map.`prod_relationship_chq_ware` AS ndb_cust_prod_map_prod_relationship_chq_ware,
+     ndb_cust_prod_map.`prod_relationship_reship_only` AS ndb_cust_prod_map_prod_relationship_reship_only,
+     ndb_cust_prod_map.`prod_relationship_creat_by` AS ndb_cust_prod_map_prod_relationship_creat_by,
+     ndb_cust_prod_map.`prod_relationship_creat_date` AS ndb_cust_prod_map_prod_relationship_creat_date,
+     ndb_cust_prod_map.`prod_relationship_mod_by` AS ndb_cust_prod_map_prod_relationship_mod_by,
+     ndb_cust_prod_map.`prod_relationship_mod_date` AS ndb_cust_prod_map_prod_relationship_mod_date,
+     ndb_cust_prod_map_A.`idndb_cust_prod_map` AS ndb_cust_prod_map_A_idndb_cust_prod_map,
+     ndb_cust_prod_map_A.`idndb_customer_define` AS ndb_cust_prod_map_A_idndb_customer_define,
+     ndb_cust_prod_map_A.`prod_relationship_key_seller` AS ndb_cust_prod_map_A_prod_relationship_key_seller,
+     ndb_cust_prod_map_A.`prod_relationship_key_buyer` AS ndb_cust_prod_map_A_prod_relationship_key_buyer,
+     ndb_cust_prod_map_A.`prod_relationship_status` AS ndb_cust_prod_map_A_prod_relationship_status,
+     ndb_cust_prod_map_A.`prod_relationship_auth` AS ndb_cust_prod_map_A_prod_relationship_auth,
+     ndb_cust_prod_map_A.`prod_relationship_res_fin` AS ndb_cust_prod_map_A_prod_relationship_res_fin,
+     ndb_cust_prod_map_A.`prod_relationship_chq_ware` AS ndb_cust_prod_map_A_prod_relationship_chq_ware,
+     ndb_cust_prod_map_A.`prod_relationship_reship_only` AS ndb_cust_prod_map_A_prod_relationship_reship_only,
+     ndb_cust_prod_map_A.`prod_relationship_creat_by` AS ndb_cust_prod_map_A_prod_relationship_creat_by,
+     ndb_cust_prod_map_A.`prod_relationship_creat_date` AS ndb_cust_prod_map_A_prod_relationship_creat_date,
+     ndb_cust_prod_map_A.`prod_relationship_mod_by` AS ndb_cust_prod_map_A_prod_relationship_mod_by,
+     ndb_cust_prod_map_A.`prod_relationship_mod_date` AS ndb_cust_prod_map_A_prod_relationship_mod_date,
+     ndb_customer_define.`idndb_customer_define` AS ndb_customer_define_idndb_customer_define,
+     ndb_customer_define.`cust_id` AS ndb_customer_define_cust_id,
+     ndb_customer_define.`cust_name` AS ndb_customer_define_cust_name,
+     ndb_customer_define.`cust_short_name` AS ndb_customer_define_cust_short_name,
+     ndb_customer_define.`cust_industry_id` AS ndb_customer_define_cust_industry_id,
+     ndb_customer_define.`cust_contact_number` AS ndb_customer_define_cust_contact_number,
+     ndb_customer_define.`cust_fax_number` AS ndb_customer_define_cust_fax_number,
+     ndb_customer_define.`cust_contact_per1` AS ndb_customer_define_cust_contact_per1,
+     ndb_customer_define.`cust_contact_per2` AS ndb_customer_define_cust_contact_per2,
+     ndb_customer_define.`cust_email` AS ndb_customer_define_cust_email,
+     ndb_customer_define.`cust_address` AS ndb_customer_define_cust_address,
+     ndb_customer_define.`rec_finance_acc_num` AS ndb_customer_define_rec_finance_acc_num,
+     ndb_customer_define.`rec_finance_cr_dsc_proc_acc_num` AS ndb_customer_define_rec_finance_cr_dsc_proc_acc_num,
+     ndb_customer_define.`rec_finance_curr_ac` AS ndb_customer_define_rec_finance_curr_ac,
+     ndb_customer_define.`rec_finance_margin_ac` AS ndb_customer_define_rec_finance_margin_ac,
+     ndb_customer_define.`rec_finance_margin` AS ndb_customer_define_rec_finance_margin,
+     ndb_customer_define.`cust_credit_rate` AS ndb_customer_define_cust_credit_rate,
+     ndb_customer_define.`idndb_bank_master_file` AS ndb_customer_define_idndb_bank_master_file,
+     ndb_customer_define.`idndb_branch_master_file` AS ndb_customer_define_idndb_branch_master_file,
+     ndb_customer_define.`cust_other_bank_ac_no` AS ndb_customer_define_cust_other_bank_ac_no,
+     ndb_customer_define.`idndb_geo_market_master_file` AS ndb_customer_define_idndb_geo_market_master_file,
+     ndb_customer_define.`cust_status` AS ndb_customer_define_cust_status,
+     ndb_customer_define.`cust_auth` AS ndb_customer_define_cust_auth,
+     ndb_customer_define.`cust_is_ndb_cust` AS ndb_customer_define_cust_is_ndb_cust,
+     ndb_customer_define.`cust_creat_by` AS ndb_customer_define_cust_creat_by,
+     ndb_customer_define.`cust_creat_date` AS ndb_customer_define_cust_creat_date,
+     ndb_customer_define.`cust_mod_by` AS ndb_customer_define_cust_mod_by,
+     ndb_customer_define.`cust_mod_date` AS ndb_customer_define_cust_mod_date
+FROM
+     `ndb_pdc_txn_master` ndb_pdc_txn_master INNER JOIN `gefu_file_generation` gefu_file_generation ON ndb_pdc_txn_master.`idndb_pdc_txn_master` = gefu_file_generation.`idndb_pdc_txn_master`
+     INNER JOIN `ndb_cust_prod_map` ndb_cust_prod_map_A ON ndb_pdc_txn_master.`idndb_customer_define_seller_id` = ndb_cust_prod_map_A.`idndb_cust_prod_map`
+     INNER JOIN `ndb_customer_define` ndb_customer_define ON ndb_cust_prod_map_A.`idndb_customer_define` = ndb_customer_define.`idndb_customer_define`,
+     `ndb_cust_prod_map` ndb_cust_prod_map]]>
+	</queryString>
+	<field name="gefu_file_generation_idgefu_file_generation" class="java.lang.Integer"/>
+	<field name="gefu_file_generation_idndb_pdc_txn_master" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_pdc_txn_master" class="java.lang.Integer"/>
+	<field name="ndb_pdc_txn_master_pdc_req_financing" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_seller_id" class="java.lang.String"/>
+	<field name="ndb_pdc_txn_master_idndb_customer_define_buyer_id" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_idndb_customer_define" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_key_seller" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_key_buyer" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_status" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_auth" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_res_fin" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_chq_ware" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_reship_only" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_creat_by" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_creat_date" class="java.sql.Timestamp"/>
+	<field name="ndb_cust_prod_map_prod_relationship_mod_by" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_prod_relationship_mod_date" class="java.sql.Timestamp"/>
+	<field name="ndb_cust_prod_map_A_idndb_cust_prod_map" class="java.lang.Integer"/>
+	<field name="ndb_cust_prod_map_A_idndb_customer_define" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_key_seller" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_key_buyer" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_status" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_auth" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_res_fin" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_chq_ware" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_reship_only" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_creat_by" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_creat_date" class="java.sql.Timestamp"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_mod_by" class="java.lang.String"/>
+	<field name="ndb_cust_prod_map_A_prod_relationship_mod_date" class="java.sql.Timestamp"/>
+	<field name="ndb_customer_define_idndb_customer_define" class="java.lang.Integer"/>
+	<field name="ndb_customer_define_cust_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_name" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_short_name" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_industry_id" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_contact_number" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_fax_number" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_contact_per1" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_contact_per2" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_email" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_address" class="java.lang.String"/>
+	<field name="ndb_customer_define_rec_finance_acc_num" class="java.lang.String"/>
+	<field name="ndb_customer_define_rec_finance_cr_dsc_proc_acc_num" class="java.lang.String"/>
+	<field name="ndb_customer_define_rec_finance_curr_ac" class="java.lang.String"/>
+	<field name="ndb_customer_define_rec_finance_margin_ac" class="java.lang.String"/>
+	<field name="ndb_customer_define_rec_finance_margin" class="java.lang.Double"/>
+	<field name="ndb_customer_define_cust_credit_rate" class="java.lang.String"/>
+	<field name="ndb_customer_define_idndb_bank_master_file" class="java.lang.String"/>
+	<field name="ndb_customer_define_idndb_branch_master_file" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_other_bank_ac_no" class="java.lang.String"/>
+	<field name="ndb_customer_define_idndb_geo_market_master_file" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_status" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_auth" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_is_ndb_cust" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_creat_by" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_creat_date" class="java.sql.Timestamp"/>
+	<field name="ndb_customer_define_cust_mod_by" class="java.lang.String"/>
+	<field name="ndb_customer_define_cust_mod_date" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

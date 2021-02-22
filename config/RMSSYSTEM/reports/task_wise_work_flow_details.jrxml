@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="task_wise_work_flow_details" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1782d582-1126-4ad9-88f2-2d78d364a9b4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pro_refnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT date_format(datetime,'%Y-%m-%d') creadt,idassinged_projects_master,user_id,pro_refnum,user_id,pro_change,pro_reson FROM change_reporting_table where pro_refnum=$P{pro_refnum}]]>
+	</queryString>
+	<field name="creadt" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idassinged_projects_master" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_refnum" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_change" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_reson" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="553" height="42" backcolor="#CCCCCC" uuid="ceeee679-cd7f-42df-bb5b-691387bf5104"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="24" height="20" uuid="80a21b71-a05a-43e3-8843-84d774b59af8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd h.mm a">
+				<reportElement x="35" y="10" width="104" height="20" uuid="f2c9af58-b7ef-4140-915f-2b40a25f67d3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="439" y="7" width="111" height="28" uuid="bdcb8579-73eb-42e3-a20c-bf766be357b6"/>
+				<imageExpression><![CDATA["D:\\reports\\NDBLogoB.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="151" y="7" width="136" height="27" uuid="ddb06769-cf19-4028-b153-dab2dc82bde4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[WORK FLOW OF : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="287" y="7" width="104" height="20" uuid="e4418e8d-94cb-49cf-a72d-e6396b9672aa"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pro_refnum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="4" width="100" height="20" uuid="07eb55e8-09e7-469f-9004-57c6d473a789"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="4" width="100" height="20" uuid="0ae37e12-5ac9-4510-9549-9785228569cc"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Change]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="4" width="127" height="20" uuid="138a4ec8-13e5-4c22-a1b5-3d607879674e"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="4" width="100" height="20" uuid="71b386da-c307-4870-a0e2-d24b56755205"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Change By]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="3" width="100" height="20" uuid="d6059dcf-0716-4e2e-9d84-58803c5ea04f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creadt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="3" width="100" height="20" uuid="307a18a4-d32e-4c47-acdc-7a114b8fb2c5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_change}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="3" width="127" height="20" uuid="62682336-e8dc-4fc3-abcb-d4787c8dc8a3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_reson}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="3" width="100" height="20" uuid="fbfcbca5-3c6d-46d5-b7f6-ac78981d45c9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="556" height="44" backcolor="#CCCCCC" uuid="029bb98e-afa9-49fb-b892-3a9cd427bd4d"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="283" y="8" width="100" height="20" uuid="bc4ecd7c-5578-4954-bd80-d3f0d0ae32f0"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Page">
+				<reportElement x="240" y="8" width="27" height="20" uuid="27414843-3192-4a0f-87b8-a1b64ef5228c"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="262" y="8" width="25" height="20" uuid="6941f52c-b27f-48d1-ade2-cf206e88b428"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="8" width="25" height="20" uuid="1374c58a-02e9-40fe-89e2-a03a5cbdc79b"/>
+				<textElement>
+					<font fontName="Courier New" size="8"/>
+				</textElement>
+				<text><![CDATA[Page]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="groupTest" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71da4d00-54ab-49a2-949a-3a454de9ef77">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM ndb_mstp_db.ndb_mstp_daily_mail_sending;]]>
+	</queryString>
+	<field name="idndb_mstp_daily_mail_sending" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_affected_customer_count" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_failed_customer_count" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_createuser" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmsms_sending_creat_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="nmsms_sending_date">
+		<groupExpression><![CDATA[$F{nmsms_sending_date}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="0" y="30" width="79" height="20" uuid="ddc05784-acaa-4a04-af9a-b0d559fcdcc2"/>
+					<textFieldExpression><![CDATA[$F{idndb_mstp_daily_mail_sending}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="395" y="30" width="79" height="20" uuid="48cf5459-8cc8-431d-b05c-720cb7ff6ef5"/>
+					<text><![CDATA[nmsms_sending_createuser]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="474" y="30" width="79" height="20" uuid="057004ee-508a-4ed6-bcfb-94462aa8ede6"/>
+					<text><![CDATA[nmsms_sending_creat_date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="79" y="30" width="79" height="20" uuid="dee55215-d363-45de-ac2d-6a07dda800b8"/>
+					<text><![CDATA[nmsms_sending_type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="316" y="30" width="79" height="20" uuid="bce35290-65cd-4065-90c1-a90afcd78c92"/>
+					<text><![CDATA[nmsms_sending_failed_customer_count]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="158" y="30" width="79" height="20" uuid="c0857ae3-feeb-455d-b7b8-6242e2d51c7e"/>
+					<text><![CDATA[nmsms_sending_date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="237" y="30" width="79" height="20" uuid="b7585b7f-027e-405d-a991-c5f9d3d78bd5"/>
+					<text><![CDATA[nmsms_sending_affected_customer_count]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" uuid="15bbc1ac-418c-4c88-8fe1-e7e469c66cd5"/>
+					<text><![CDATA[ENS OF GROUP]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="20" uuid="1da1c434-a365-4d90-b0f9-74b932ee6ada"/>
+				<text><![CDATA[idndb_mstp_daily_mail_sending]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="79" height="20" uuid="938701c0-f6da-46f5-917a-a84c071add93"/>
+				<text><![CDATA[nmsms_sending_type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="0" width="79" height="20" uuid="3a477f79-316c-40f4-9674-536db7a84fd7"/>
+				<text><![CDATA[nmsms_sending_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="0" width="79" height="20" uuid="7e1fd7ae-a204-4123-a9ba-6a7273ade283"/>
+				<text><![CDATA[nmsms_sending_affected_customer_count]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="79" height="20" uuid="a0632459-4d12-4e6b-9cb5-7d818f7f8a31"/>
+				<text><![CDATA[nmsms_sending_failed_customer_count]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="0" width="79" height="20" uuid="18f0ec07-1d7e-4c51-b68c-360a6b85843c"/>
+				<text><![CDATA[nmsms_sending_createuser]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="0" width="79" height="20" uuid="ab8ba41b-4737-4ad0-85b8-9943363ab13c"/>
+				<text><![CDATA[nmsms_sending_creat_date]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="0" width="79" height="20" uuid="48a741ec-d838-4a28-8dbf-0af504bf6d1c"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="79" height="20" uuid="36009875-9923-4903-bc80-fd4da9d6fe6a"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="79" height="20" uuid="7a849cec-ca29-4f4a-9f93-f34f836f8286"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_affected_customer_count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="79" height="20" uuid="873df0f8-2aaa-4e43-829a-a3f12ec422d6"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_failed_customer_count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="79" height="20" uuid="80043712-db19-45b8-980c-6576de3b0bdd"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_createuser}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="79" height="20" uuid="b2584e66-6aca-41d2-9baa-84f526e85628"/>
+				<textFieldExpression><![CDATA[$F{nmsms_sending_creat_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

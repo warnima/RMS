@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NDBCHQDEPOSITSLIP" language="groovy" pageWidth="558" pageHeight="281" columnWidth="558" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a7b4b293-2905-4d56-a881-03d98b932128">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="_cust_name" class="java.lang.String"/>
+	<parameter name="_account_number" class="java.lang.String"/>
+	<parameter name="_value_date" class="java.lang.String"/>
+	<parameter name="_currency" class="java.lang.String"/>
+	<parameter name="_chq_number" class="java.lang.String"/>
+	<parameter name="_bank_branch" class="java.lang.String"/>
+	<parameter name="_amount" class="java.lang.String"/>
+	<parameter name="_idndb_pdc_txn_master" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from ndb_pdc_txn_master where idndb_pdc_txn_master=$P{_idndb_pdc_txn_master};]]>
+	</queryString>
+	<field name="idndb_pdc_txn_master" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_req_financing" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idndb_customer_define_seller_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idndb_customer_define_buyer_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idndb_bank_master_file" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_bank_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idndb_branch_master_file" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_branch_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_booking_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_value_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_lquid_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_discounting_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_net_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_cr_amu" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_status_auth" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_batch_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_creat_by" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_creat_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_mod_by" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_chq_mod_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cust_account_number" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_bank_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pdc_branch_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cust_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="278" splitType="Stretch">
+			<textField>
+				<reportElement x="112" y="33" width="262" height="20" uuid="1d38a257-9290-4947-b5ce-a44d75e394f7"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_cust_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="35" width="126" height="20" uuid="79a7ea0e-5655-4c7a-b7ea-9f9395de9b91"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_value_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="441" y="69" width="57" height="20" uuid="7685aa9a-6cfb-49a6-bb04-904339221e8b"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_currency}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="75" width="266" height="20" uuid="a591cfa1-fa36-4108-a9ae-765f301117aa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_account_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="127" width="100" height="20" uuid="482a72d5-4a6e-4883-b122-8ca3d3e0efbd"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_chq_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="127" width="107" height="20" uuid="5897f68f-8377-49b0-b2c9-c4dcc822779f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_bank_branch}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="124" width="219" height="20" uuid="fc0892cf-9ba2-4844-add6-134616a179eb"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="218" width="219" height="20" uuid="5195bdeb-2076-437a-bb39-bd0d433fe40d"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
