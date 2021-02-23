@@ -1,0 +1,56 @@
+1. Copy R20 to D:\ and uncompress (any drive if change needs to change in tafj.properties)
+
+2. Copy Design Studio R20 and unzip
+
+3. D:\R20\DesignStudioT24\dropins\tafj.link cut and paste one step outside
+
+4. Copy all jars from D:\R20\TAFJ\eclieps\plugins to D:\R20\DesignStudioT24\dropins
+
+
+5. execute the DesignStudioT24.exe 
+it will ask workspace give default location 
+
+6. Copy t24-binaries-R20 file to D:\R20\DesignStudioT24 and rerun
+
+7,edit tafj property as below
+
+temn.tafj.directory.precompile=D:\R20\T24\bnk\t24lib
+
+8,setup JDBC connection
+
+
+temn.tafj.jdbc.url=jdbc:oracle:thin:@10.96.198.150:1571:r20model
+
+# Class that describes the specific Driver for a database,
+# ex. oracle:             oracle.jdbc.driver.OracleDriver
+# ex. db2:                com.ibm.db2.jcc.DB2Driver
+# ex. ms-sql:             com.microsoft.sqlserver.jdbc.SQLServerDriver
+# ex. H2:                 org.h2.Driver
+# ex. nuodb:              com.nuodb.jdbc.Driver
+# ex. postgresql:         org.postgresql.Driver
+#
+temn.tafj.jdbc.driver=oracle.jdbc.driver.OracleDriver
+
+temn.tafj.jdbc.username=tafj
+temn.tafj.jdbc.password=tafj#123
+
+
+9,change the UD directory in conf
+
+temn.tafj.runtime.directory.current=D:\R20\T24\bnk\UD
+
+10.copy all jar's from D:\R20\TAFJ\dbdrivers\oracle-12c and paste into D:\R20\TAFJ\ext
+
+11, excute in cmd - D:\R20\TAFJ\bin>tshow EX
+
+12, D:\R20\TAFJ\bin>tRun EX
+
+13, creta on project.
+right click on the project and choose toggle tafj method.
+give the tafj home location.and point the tafj property file.
+create 1 folder inside the project.create a program inside the folder.
+type  CRT 'HI' inside the program and ctrl +S  .
+run the program as basic program.
+
+
+
